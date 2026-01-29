@@ -41,6 +41,7 @@
       padding-bottom: 8px;
       border-bottom: 2px solid #e74c3c;
     }
+    .section-title.media { border-color: #9b59b6; }
     .card {
       background: rgba(255,255,255,0.05);
       border-radius: 12px;
@@ -53,6 +54,7 @@
     .card.liked { border-color: #2ecc71; background: rgba(46,204,113,0.1); }
     .card.disliked { border-color: #e74c3c; background: rgba(231,76,60,0.1); opacity: 0.6; }
     .source { color: #3498db; font-weight: 600; font-size: 0.9em; }
+    .source.mainstream { color: #9b59b6; }
     .headline { 
       font-size: 1.1em; 
       font-weight: 600; 
@@ -64,6 +66,18 @@
       line-height: 1.6; 
       color: #ccc;
     }
+    .media-claim {
+      background: rgba(155,89,182,0.1);
+      border-left: 3px solid #9b59b6;
+      padding: 10px 12px;
+      margin: 10px 0;
+      font-size: 0.9em;
+    }
+    .media-claim-title {
+      color: #9b59b6;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
     .fact-check {
       background: rgba(46,204,113,0.1);
       border-left: 3px solid #2ecc71;
@@ -71,11 +85,21 @@
       margin: 12px 0;
       font-size: 0.9em;
     }
+    .fact-check.warning {
+      background: rgba(241,196,15,0.1);
+      border-left-color: #f1c40f;
+    }
+    .fact-check.false {
+      background: rgba(231,76,60,0.1);
+      border-left-color: #e74c3c;
+    }
     .fact-check-title {
       color: #2ecc71;
       font-weight: 600;
       margin-bottom: 5px;
     }
+    .fact-check.warning .fact-check-title { color: #f1c40f; }
+    .fact-check.false .fact-check-title { color: #e74c3c; }
     .fact-check-content { color: #aaa; line-height: 1.5; }
     .fact-check-source {
       color: #666;
@@ -83,18 +107,19 @@
       margin-top: 8px;
     }
     .fact-check-source a { color: #9b59b6; }
-    .links {
-      display: flex;
-      gap: 15px;
-      margin-top: 10px;
-      flex-wrap: wrap;
+    .verdict {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.8em;
+      font-weight: 600;
+      margin-top: 8px;
     }
-    .link { 
-      color: #9b59b6; 
-      text-decoration: none; 
-      font-size: 0.85em; 
-    }
-    .link:hover { text-decoration: underline; }
+    .verdict.true { background: #27ae60; color: white; }
+    .verdict.partial { background: #f39c12; color: white; }
+    .verdict.misleading { background: #e67e22; color: white; }
+    .verdict.false { background: #e74c3c; color: white; }
+    .verdict.unverified { background: #7f8c8d; color: white; }
     .actions {
       display: flex;
       gap: 10px;
@@ -163,22 +188,21 @@
       ⚖️ Aucun biais partisan — faits vérifiés via sources officielles uniquement
     </div>
 
-    <div class="section-title">🇺🇸 ADMINISTRATION TRUMP</div>
+    <div class="section-title">🇺🇸 FAITS DU JOUR</div>
 
-    <div class="card" data-id="1" data-topics="ice,immigration,homan">
-      <span class="source">📰 Trending: Tom Homan</span>
-      <p class="headline">Tom Homan tient une conférence de presse sur les opérations ICE</p>
-      <p class="summary">Le "border czar" de Trump a défendu les opérations d'ICE face aux critiques, évoquant la fatigue des agents ("8 mois sur le terrain") et promettant des poursuites contre les organisations qui financent les attaques anti-ICE.</p>
+    <div class="card" data-id="1" data-topics="ice,immigration,homan,minneapolis">
+      <span class="source">📰 Trending: Minneapolis / ICE</span>
+      <p class="headline">Minneapolis : Trump "n'abandonne pas" mais réduit le déploiement</p>
+      <p class="summary">Tom Homan annonce que l'opération ICE à Minneapolis continue mais avec moins d'agents. Deux agents suspendus après la mort d'Alex Pretti. Le "border czar" promet des sanctions pour ceux qui ne respectent pas les règles.</p>
       <div class="fact-check">
         <div class="fact-check-title">✅ Fact-check (whitehouse.gov)</div>
         <div class="fact-check-content">
-          <strong>Chiffres officiels confirmés :</strong><br>
+          <strong>Contexte officiel :</strong><br>
+          • ICE effectifs doublés : 10,000 → 22,000 agents<br>
           • 605,000+ déportations depuis janvier 2025<br>
-          • 1.9 million d'auto-déportations<br>
-          • ICE : effectifs doublés de 10,000 à 22,000 agents<br>
-          • Migration nette négative en 2025 (1ère fois en 50 ans)
+          • Politique "zero release" : aucun clandestin relâché depuis 8 mois consécutifs
         </div>
-        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/priorities/border-immigration/" target="_blank">whitehouse.gov/priorities/border-immigration</a></div>
+        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/priorities/border-immigration/" target="_blank">whitehouse.gov</a></div>
       </div>
       <div class="actions">
         <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
@@ -186,39 +210,18 @@
       </div>
     </div>
 
-    <div class="card" data-id="2" data-topics="doge,musk,government">
-      <span class="source">📰 Trending: DOGE</span>
-      <p class="headline">DOGE continue ses audits — aucune poursuite criminelle à ce jour</p>
-      <p class="summary">Le Department of Government Efficiency (Musk/Ramaswamy) poursuit ses audits de l'administration fédérale. Découverte : 4.6 millions de cartes de crédit gouvernementales traitant $40B/an. Le programme se termine officiellement le 4 juillet 2026.</p>
-      <div class="fact-check">
-        <div class="fact-check-title">✅ Fact-check (whitehouse.gov)</div>
-        <div class="fact-check-content">
-          <strong>Statut officiel :</strong><br>
-          • DOGE est une initiative officielle listée dans les priorités de la White House<br>
-          • Focus : "Reform Government" — réduction des dépenses et inefficacités<br>
-          • Aucune poursuite criminelle directe résultant des découvertes DOGE (confirmé par Grok/xAI)
-        </div>
-        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/issues/doge" target="_blank">whitehouse.gov/issues/doge</a></div>
-      </div>
-      <div class="actions">
-        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
-        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
-      </div>
-    </div>
-
-    <div class="card" data-id="3" data-topics="ai,executive-order,regulation">
-      <span class="source">📰 Executive Order</span>
-      <p class="headline">Décret sur l'IA : potentielle préemption des lois d'État sur l'IA hospitalière</p>
-      <p class="summary">L'Executive Order "Ensuring a National Policy Framework for Artificial Intelligence" pourrait invalider les lois d'État régulant l'usage de l'IA dans les hôpitaux, au profit d'un cadre fédéral unifié.</p>
+    <div class="card" data-id="2" data-topics="iran,military,diplomacy">
+      <span class="source">📰 Géopolitique</span>
+      <p class="headline">Iran : Trump déploie l'armada US dans le Golfe Persique</p>
+      <p class="summary">"Le temps est compté" — Trump menace l'Iran si aucun accord nucléaire n'est conclu. Téhéran promet de "répondre comme jamais" en cas d'attaque. La Turquie se prépare à renforcer sa frontière (500km avec l'Iran).</p>
       <div class="fact-check">
         <div class="fact-check-title">✅ Fact-check (whitehouse.gov)</div>
         <div class="fact-check-content">
           <strong>Priorité confirmée :</strong><br>
-          • "Lead the World in AI" est la priorité #1 listée sur whitehouse.gov<br>
-          • Site dédié lancé : ai.gov<br>
-          • L'administration pousse pour un cadre fédéral plutôt que des régulations d'État fragmentées
+          • "Strengthen National Security" est dans les priorités officielles<br>
+          • L'UE devrait inscrire les Gardiens de la Révolution comme "organisation terroriste" (Kaja Kallas)
         </div>
-        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/issues/tech-innovation" target="_blank">whitehouse.gov/issues/tech-innovation</a> + <a href="https://ai.gov" target="_blank">ai.gov</a></div>
+        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/issues/national-security" target="_blank">whitehouse.gov</a></div>
       </div>
       <div class="actions">
         <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
@@ -226,19 +229,18 @@
       </div>
     </div>
 
-    <div class="card" data-id="4" data-topics="california,la,fires,reconstruction">
-      <span class="source">📰 Executive Order</span>
-      <p class="headline">Trump prend le contrôle de la reconstruction de Los Angeles</p>
-      <p class="summary">Après les incendies dévastateurs en Californie, un décret présidentiel place la reconstruction de LA sous contrôle fédéral, court-circuitant le gouverneur Newsom. Citation : "Le peuple a assez attendu."</p>
-      <div class="fact-check">
-        <div class="fact-check-title">⚠️ Fact-check en cours</div>
+    <div class="card" data-id="3" data-topics="georgia,fbi,election">
+      <span class="source">📰 Le Figaro</span>
+      <p class="headline">FBI perquisitionne un centre de stockage de bulletins en Géorgie</p>
+      <p class="summary">Des agents fédéraux récupèrent des caisses de bulletins de vote de 2020 dans le comté de Fulton, au cœur des accusations de fraude électorale de Trump.</p>
+      <div class="fact-check warning">
+        <div class="fact-check-title">⚠️ En attente de confirmation</div>
         <div class="fact-check-content">
-          <strong>À vérifier :</strong><br>
-          • Le décret spécifique n'a pas encore été retrouvé sur whitehouse.gov/presidential-actions<br>
-          • L'administration a critiqué publiquement la gestion californienne des incendies<br>
-          • Statut légal d'une telle préemption fédérale : contestable
+          <strong>Non vérifiable actuellement :</strong><br>
+          • Aucun communiqué officiel du FBI ou DOJ trouvé<br>
+          • Source : responsable administrative du comté de Fulton (cité par Le Figaro)<br>
+          • Contexte : Trump a longtemps contesté les résultats 2020 en Géorgie
         </div>
-        <div class="fact-check-source">Source: En attente de publication officielle</div>
       </div>
       <div class="actions">
         <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
@@ -246,40 +248,113 @@
       </div>
     </div>
 
-    <div class="section-title">🌍 INTERNATIONAL</div>
+    <div class="section-title media">📺 MEDIA CHECK — Ce que disent les mainstream</div>
 
-    <div class="card" data-id="5" data-topics="tps,immigration,haiti,venezuela">
-      <span class="source">📰 Policy Update</span>
-      <p class="headline">Fin du TPS pour Haïti, Venezuela et Somalie</p>
-      <p class="summary">L'administration a terminé le Temporary Protected Status (TPS) pour plusieurs pays, forçant les ressortissants à régulariser leur situation ou quitter le territoire.</p>
-      <div class="fact-check">
-        <div class="fact-check-title">✅ Fact-check (whitehouse.gov)</div>
-        <div class="fact-check-content">
-          <strong>Confirmé officiellement :</strong><br>
-          • TPS terminé pour Somalie, Venezuela, Haïti (qualifiés de "dangerous, third-world countries")<br>
-          • 75 pays mis en pause pour les visas immigrants (taux de welfare jugés "inacceptables")
-        </div>
-        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/priorities/border-immigration/" target="_blank">whitehouse.gov/priorities/border-immigration</a></div>
+    <div class="card" data-id="4" data-topics="media,military,cost">
+      <span class="source mainstream">📺 France Info</span>
+      <p class="headline">"Les déploiements militaires de Trump ont coûté ~500 millions de dollars"</p>
+      <div class="media-claim">
+        <div class="media-claim-title">💬 Claim du média</div>
+        France Info affirme que le Congressional Budget Office (CBO) a publié ce chiffre.
       </div>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Plausible — Source officielle citée</div>
+        <div class="fact-check-content">
+          Le CBO est bien un organisme officiel du Congrès US qui publie des estimations budgétaires. Le chiffre de ~$500M pour des déploiements domestiques (frontière, etc.) est dans l'ordre de grandeur plausible.<br><br>
+          <strong>Note :</strong> Le rapport spécifique n'a pas été retrouvé sur cbo.gov au moment du check.
+        </div>
+        <div class="fact-check-source">Source citée: <a href="https://www.cbo.gov/" target="_blank">Congressional Budget Office</a></div>
+      </div>
+      <span class="verdict partial">⚡ PLAUSIBLE</span>
       <div class="actions">
         <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
         <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
       </div>
     </div>
 
-    <div class="card" data-id="6" data-topics="fentanyl,border,drugs">
-      <span class="source">📰 Border Security</span>
-      <p class="headline">Trafic de fentanyl en baisse de 56% à la frontière sud</p>
-      <p class="summary">Les saisies et le trafic de fentanyl à la frontière mexicaine ont diminué de plus de la moitié par rapport à l'année précédente, selon les chiffres du DHS.</p>
-      <div class="fact-check">
-        <div class="fact-check-title">✅ Fact-check (whitehouse.gov)</div>
-        <div class="fact-check-content">
-          <strong>Chiffre officiel :</strong><br>
-          • -56% de trafic de fentanyl à la frontière sud (au 30 septembre 2025 vs année précédente)<br>
-          • +10,000 individus liés au narco-terrorisme bloqués à l'entrée
-        </div>
-        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/priorities/border-immigration/" target="_blank">whitehouse.gov/priorities/border-immigration</a></div>
+    <div class="card" data-id="5" data-topics="media,ice,minneapolis">
+      <span class="source mainstream">📺 France Info / Le Figaro</span>
+      <p class="headline">"Deux agents ICE suspendus après la mort d'Alex Pretti"</p>
+      <div class="media-claim">
+        <div class="media-claim-title">💬 Claim du média</div>
+        Les médias rapportent que deux agents fédéraux impliqués dans la mort d'Alex Pretti ont été suspendus. Procédure "standard" selon un porte-parole.
       </div>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Confirmé par Homan</div>
+        <div class="fact-check-content">
+          Tom Homan a confirmé lors de sa conférence de presse que des agents "qui ne respectent pas les règles seront sanctionnés". La suspension de deux agents est cohérente avec cette déclaration.<br><br>
+          <strong>Contexte :</strong> Homan a aussi dit que les agents "sont humains" et que certains sont "en théâtre depuis 8 mois".
+        </div>
+      </div>
+      <span class="verdict true">✅ CONFIRMÉ</span>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="6" data-topics="media,trump,corruption">
+      <span class="source mainstream">📺 20 Minutes</span>
+      <p class="headline">"Trump est-il corrompu ? Avion-cadeau, crypto, immobilier..."</p>
+      <div class="media-claim">
+        <div class="media-claim-title">💬 Claim du média</div>
+        20 Minutes (mai 2025) affirme que "de nombreuses associations dénoncent les agissements du président, accusé d'utiliser sa position pour son enrichissement personnel."
+      </div>
+      <div class="fact-check warning">
+        <div class="fact-check-title">⚠️ Opinion / Accusations non prouvées</div>
+        <div class="fact-check-content">
+          <strong>Ce que dit le titre :</strong> Question rhétorique ("est-il corrompu?") basée sur des accusations d'associations.<br><br>
+          <strong>Réalité :</strong> Aucune condamnation pour corruption. Les "associations" citées sont souvent des groupes d'opposition partisans.<br><br>
+          <strong>Note :</strong> Le titre est formulé pour suggérer la culpabilité sans preuve. Technique classique de framing.
+        </div>
+      </div>
+      <span class="verdict misleading">🔶 ORIENTÉ</span>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="7" data-topics="media,trump,health">
+      <span class="source mainstream">📺 20 Minutes</span>
+      <p class="headline">"Trump accusé de déni économique et de déclin physique — du déjà-vu"</p>
+      <div class="media-claim">
+        <div class="media-claim-title">💬 Claim du média</div>
+        20 Minutes (déc 2025) compare Trump à Biden : "Un président vieillissant, confronté à de mauvais sondages et à des soupçons sur sa santé."
+      </div>
+      <div class="fact-check warning">
+        <div class="fact-check-title">⚠️ Comparaison tendancieuse</div>
+        <div class="fact-check-content">
+          <strong>Analyse :</strong> L'article établit un parallèle Biden/Trump pour suggérer un "déclin" similaire.<br><br>
+          <strong>Réalité :</strong><br>
+          • Biden a dû se retirer de la course 2024 pour raisons de santé<br>
+          • Trump a gagné l'élection 2024 et gouverne activement<br>
+          • Les deux situations ne sont pas comparables<br><br>
+          <strong>Note :</strong> Titre conçu pour créer une équivalence artificielle.
+        </div>
+      </div>
+      <span class="verdict misleading">🔶 ORIENTÉ</span>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="8" data-topics="media,capgemini,ice">
+      <span class="source mainstream">📺 France Info</span>
+      <p class="headline">"Capgemini aide ICE à localiser les migrants"</p>
+      <div class="media-claim">
+        <div class="media-claim-title">💬 Claim du média</div>
+        France Info affirme que le groupe français Capgemini fournit des services technologiques à la police fédérale américaine ICE.
+      </div>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Probablement vrai — Contrats publics</div>
+        <div class="fact-check-content">
+          <strong>Contexte :</strong> Les contrats fédéraux US sont publics. De nombreuses entreprises tech (Palantir, Amazon, Microsoft, etc.) ont des contrats avec des agences fédérales dont ICE.<br><br>
+          <strong>Note :</strong> Le ton de l'article suggère un scandale, mais ces contrats sont légaux et documentés. La formulation "aide à localiser les migrants" est émotionnellement chargée pour décrire des services IT standard.
+        </div>
+      </div>
+      <span class="verdict partial">⚡ VRAI MAIS FRAMING</span>
       <div class="actions">
         <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
         <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
@@ -340,12 +415,8 @@
       });
       
       console.log('Feedback:', feedback);
-      
-      if (window.parent !== window) {
-        window.parent.postMessage({ type: 'feedbackSubmit', feedback }, '*');
-      }
     }
   </script>
 </body>
 </html>
-<!-- rebuild Wed Jan 29 15:21:00 CET 2026 -->
+<!-- rebuild Wed Jan 29 15:31:00 CET 2026 -->
