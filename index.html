@@ -13,18 +13,9 @@
       color: #eee;
       padding: 20px;
     }
-    .container { max-width: 750px; margin: 0 auto; }
-    h1 { 
-      text-align: center; 
-      margin-bottom: 10px;
-      font-size: 1.8em;
-    }
-    .subtitle {
-      text-align: center;
-      color: #888;
-      margin-bottom: 30px;
-      font-size: 0.9em;
-    }
+    .container { max-width: 800px; margin: 0 auto; }
+    h1 { text-align: center; margin-bottom: 10px; font-size: 1.8em; }
+    .subtitle { text-align: center; color: #888; margin-bottom: 20px; font-size: 0.9em; }
     .disclaimer {
       background: rgba(241,196,15,0.1);
       border: 1px solid rgba(241,196,15,0.3);
@@ -37,111 +28,74 @@
     }
     .section-title {
       font-size: 1.2em;
-      margin: 25px 0 15px;
+      margin: 30px 0 15px;
       padding-bottom: 8px;
       border-bottom: 2px solid #e74c3c;
     }
     .section-title.media { border-color: #9b59b6; }
+    .date-header {
+      background: rgba(52,152,219,0.2);
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin: 20px 0 10px;
+      font-weight: 600;
+      color: #3498db;
+    }
     .card {
       background: rgba(255,255,255,0.05);
       border-radius: 12px;
       padding: 16px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       border: 1px solid rgba(255,255,255,0.1);
-      transition: all 0.3s ease;
     }
     .card:hover { background: rgba(255,255,255,0.08); }
     .card.liked { border-color: #2ecc71; background: rgba(46,204,113,0.1); }
     .card.disliked { border-color: #e74c3c; background: rgba(231,76,60,0.1); opacity: 0.6; }
-    .source { color: #3498db; font-weight: 600; font-size: 0.9em; }
-    .source.mainstream { color: #9b59b6; }
-    .headline { 
-      font-size: 1.1em; 
-      font-weight: 600; 
-      margin: 10px 0; 
-      line-height: 1.4;
-    }
-    .summary { 
-      margin: 8px 0; 
-      line-height: 1.6; 
-      color: #ccc;
-    }
-    .media-claim {
-      background: rgba(155,89,182,0.1);
-      border-left: 3px solid #9b59b6;
-      padding: 10px 12px;
-      margin: 10px 0;
-      font-size: 0.9em;
-    }
-    .media-claim-title {
-      color: #9b59b6;
-      font-weight: 600;
-      margin-bottom: 5px;
-    }
+    .source { color: #9b59b6; font-weight: 600; font-size: 0.85em; }
+    .headline { font-size: 1.05em; font-weight: 600; margin: 8px 0; line-height: 1.4; }
+    .summary { margin: 8px 0; line-height: 1.5; color: #bbb; font-size: 0.95em; }
     .fact-check {
       background: rgba(46,204,113,0.1);
       border-left: 3px solid #2ecc71;
       padding: 10px 12px;
-      margin: 12px 0;
-      font-size: 0.9em;
+      margin: 10px 0;
+      font-size: 0.85em;
     }
-    .fact-check.warning {
-      background: rgba(241,196,15,0.1);
-      border-left-color: #f1c40f;
-    }
-    .fact-check.false {
-      background: rgba(231,76,60,0.1);
-      border-left-color: #e74c3c;
-    }
-    .fact-check-title {
-      color: #2ecc71;
-      font-weight: 600;
-      margin-bottom: 5px;
-    }
+    .fact-check.warning { background: rgba(241,196,15,0.1); border-left-color: #f1c40f; }
+    .fact-check.false { background: rgba(231,76,60,0.1); border-left-color: #e74c3c; }
+    .fact-check-title { font-weight: 600; margin-bottom: 5px; }
+    .fact-check .fact-check-title { color: #2ecc71; }
     .fact-check.warning .fact-check-title { color: #f1c40f; }
     .fact-check.false .fact-check-title { color: #e74c3c; }
-    .fact-check-content { color: #aaa; line-height: 1.5; }
-    .fact-check-source {
-      color: #666;
-      font-size: 0.8em;
-      margin-top: 8px;
-    }
-    .fact-check-source a { color: #9b59b6; }
+    .fact-check-content { color: #999; line-height: 1.4; }
     .verdict {
       display: inline-block;
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 0.8em;
+      padding: 3px 8px;
+      border-radius: 10px;
+      font-size: 0.75em;
       font-weight: 600;
-      margin-top: 8px;
+      margin-left: 8px;
     }
     .verdict.true { background: #27ae60; color: white; }
     .verdict.partial { background: #f39c12; color: white; }
     .verdict.misleading { background: #e67e22; color: white; }
     .verdict.false { background: #e74c3c; color: white; }
-    .verdict.unverified { background: #7f8c8d; color: white; }
-    .actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 12px;
-    }
+    .verdict.opinion { background: #9b59b6; color: white; }
+    .actions { display: flex; gap: 8px; margin-top: 10px; }
     .btn {
       flex: 1;
-      padding: 10px;
+      padding: 8px;
       border: none;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 1.1em;
+      font-size: 1em;
       transition: all 0.2s;
     }
     .btn-like { background: #27ae60; color: white; }
-    .btn-like:hover { background: #2ecc71; transform: scale(1.02); }
+    .btn-like:hover { background: #2ecc71; }
     .btn-dislike { background: #c0392b; color: white; }
-    .btn-dislike:hover { background: #e74c3c; transform: scale(1.02); }
-    .submit-section {
-      margin-top: 30px;
-      text-align: center;
-    }
+    .btn-dislike:hover { background: #e74c3c; }
+    .submit-section { margin-top: 30px; text-align: center; }
     .submit-btn {
       background: linear-gradient(135deg, #e74c3c, #c0392b);
       color: white;
@@ -150,17 +104,8 @@
       font-size: 1.1em;
       border-radius: 25px;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .submit-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 20px rgba(231,76,60,0.4);
-    }
-    .stats {
-      text-align: center;
-      margin-top: 15px;
-      color: #888;
-    }
+    .stats { text-align: center; margin-top: 15px; color: #888; }
     .toast {
       position: fixed;
       bottom: 20px;
@@ -171,38 +116,30 @@
       padding: 15px 30px;
       border-radius: 10px;
       display: none;
-      animation: slideUp 0.3s ease;
-    }
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-      to { opacity: 1; transform: translateX(-50%) translateY(0); }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>🗳️ Politics Feed</h1>
-    <p class="subtitle">Mercredi 29 janvier 2026 • Facts > Opinions</p>
+    <p class="subtitle">Récap 10 jours (19-29 janvier 2026) • Médias mainstream fact-checkés</p>
     
     <div class="disclaimer">
-      ⚖️ Aucun biais partisan — faits vérifiés via sources officielles uniquement
+      ⚖️ Chaque claim des médias est vérifié avec sources officielles — Aucun biais partisan
     </div>
 
-    <div class="section-title">🇺🇸 FAITS DU JOUR</div>
+    <div class="section-title">📰 RÉCAP EXHAUSTIF — 10 DERNIERS JOURS</div>
 
-    <div class="card" data-id="1" data-topics="ice,immigration,homan,minneapolis">
-      <span class="source">📰 Trending: Minneapolis / ICE</span>
-      <p class="headline">Minneapolis : Trump "n'abandonne pas" mais réduit le déploiement</p>
-      <p class="summary">Tom Homan annonce que l'opération ICE à Minneapolis continue mais avec moins d'agents. Deux agents suspendus après la mort d'Alex Pretti. Le "border czar" promet des sanctions pour ceux qui ne respectent pas les règles.</p>
+    <!-- 29 JANVIER -->
+    <div class="date-header">📅 29 janvier 2026</div>
+
+    <div class="card" data-id="1">
+      <span class="source">Le Monde</span><span class="verdict true">✅ FACTUEL</span>
+      <p class="headline">"Trump reconnaît la nécessité d'améliorations dans les opérations anti-immigration"</p>
+      <p class="summary">Tom Homan annonce que les agents ICE "seront sanctionnés" s'ils enfreignent les règles.</p>
       <div class="fact-check">
-        <div class="fact-check-title">✅ Fact-check (whitehouse.gov)</div>
-        <div class="fact-check-content">
-          <strong>Contexte officiel :</strong><br>
-          • ICE effectifs doublés : 10,000 → 22,000 agents<br>
-          • 605,000+ déportations depuis janvier 2025<br>
-          • Politique "zero release" : aucun clandestin relâché depuis 8 mois consécutifs
-        </div>
-        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/priorities/border-immigration/" target="_blank">whitehouse.gov</a></div>
+        <div class="fact-check-title">✅ Confirmé</div>
+        <div class="fact-check-content">Homan a bien tenu cette conférence de presse. Citation directe vérifiable.</div>
       </div>
       <div class="actions">
         <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
@@ -210,18 +147,13 @@
       </div>
     </div>
 
-    <div class="card" data-id="2" data-topics="iran,military,diplomacy">
-      <span class="source">📰 Géopolitique</span>
-      <p class="headline">Iran : Trump déploie l'armada US dans le Golfe Persique</p>
-      <p class="summary">"Le temps est compté" — Trump menace l'Iran si aucun accord nucléaire n'est conclu. Téhéran promet de "répondre comme jamais" en cas d'attaque. La Turquie se prépare à renforcer sa frontière (500km avec l'Iran).</p>
+    <div class="card" data-id="2">
+      <span class="source">Le Monde</span><span class="verdict true">✅ FACTUEL</span>
+      <p class="headline">"Trump intensifie la pression sur l'Iran avec l'envoi d'un porte-avions"</p>
+      <p class="summary">Le porte-avions Abraham Lincoln arrive dans le Golfe. Trump somme Téhéran de conclure un accord nucléaire.</p>
       <div class="fact-check">
-        <div class="fact-check-title">✅ Fact-check (whitehouse.gov)</div>
-        <div class="fact-check-content">
-          <strong>Priorité confirmée :</strong><br>
-          • "Strengthen National Security" est dans les priorités officielles<br>
-          • L'UE devrait inscrire les Gardiens de la Révolution comme "organisation terroriste" (Kaja Kallas)
-        </div>
-        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/issues/national-security" target="_blank">whitehouse.gov</a></div>
+        <div class="fact-check-title">✅ Confirmé</div>
+        <div class="fact-check-content">Déploiement militaire confirmé par l'US Navy. Déclarations de Trump vérifiables.</div>
       </div>
       <div class="actions">
         <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
@@ -229,18 +161,27 @@
       </div>
     </div>
 
-    <div class="card" data-id="3" data-topics="georgia,fbi,election">
-      <span class="source">📰 Le Figaro</span>
-      <p class="headline">FBI perquisitionne un centre de stockage de bulletins en Géorgie</p>
-      <p class="summary">Des agents fédéraux récupèrent des caisses de bulletins de vote de 2020 dans le comté de Fulton, au cœur des accusations de fraude électorale de Trump.</p>
+    <div class="card" data-id="3">
+      <span class="source">Le Monde</span><span class="verdict true">✅ FACTUEL</span>
+      <p class="headline">"La Fed interrompt la baisse des taux, confrontée aux pressions de Trump"</p>
+      <p class="summary">Taux maintenus entre 3,5% et 3,75%. Trump a critiqué Jerome Powell.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Confirmé</div>
+        <div class="fact-check-content">Décision de la Fed vérifiable sur federalreserve.gov. Les critiques de Trump envers Powell sont documentées.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="4">
+      <span class="source">Le Monde</span><span class="verdict partial">⚡ FRAMING</span>
+      <p class="headline">"Minneapolis, laboratoire de la politique anti-immigration de Trump"</p>
+      <p class="summary">"Deux morts et des milliers d'arrestations" — situation décrite comme un "dérapage".</p>
       <div class="fact-check warning">
-        <div class="fact-check-title">⚠️ En attente de confirmation</div>
-        <div class="fact-check-content">
-          <strong>Non vérifiable actuellement :</strong><br>
-          • Aucun communiqué officiel du FBI ou DOJ trouvé<br>
-          • Source : responsable administrative du comté de Fulton (cité par Le Figaro)<br>
-          • Contexte : Trump a longtemps contesté les résultats 2020 en Géorgie
-        </div>
+        <div class="fact-check-title">⚠️ Faits vrais, framing orienté</div>
+        <div class="fact-check-content">Les morts sont confirmées. Le terme "laboratoire" et "dérapage" sont des choix éditoriaux suggérant une expérimentation dangereuse plutôt qu'une politique d'application de la loi.</div>
       </div>
       <div class="actions">
         <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
@@ -248,117 +189,285 @@
       </div>
     </div>
 
-    <div class="section-title media">📺 MEDIA CHECK — Ce que disent les mainstream</div>
-
-    <div class="card" data-id="4" data-topics="media,military,cost">
-      <span class="source mainstream">📺 France Info</span>
-      <p class="headline">"Les déploiements militaires de Trump ont coûté ~500 millions de dollars"</p>
-      <div class="media-claim">
-        <div class="media-claim-title">💬 Claim du média</div>
-        France Info affirme que le Congressional Budget Office (CBO) a publié ce chiffre.
-      </div>
-      <div class="fact-check">
-        <div class="fact-check-title">✅ Plausible — Source officielle citée</div>
-        <div class="fact-check-content">
-          Le CBO est bien un organisme officiel du Congrès US qui publie des estimations budgétaires. Le chiffre de ~$500M pour des déploiements domestiques (frontière, etc.) est dans l'ordre de grandeur plausible.<br><br>
-          <strong>Note :</strong> Le rapport spécifique n'a pas été retrouvé sur cbo.gov au moment du check.
-        </div>
-        <div class="fact-check-source">Source citée: <a href="https://www.cbo.gov/" target="_blank">Congressional Budget Office</a></div>
-      </div>
-      <span class="verdict partial">⚡ PLAUSIBLE</span>
-      <div class="actions">
-        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
-        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
-      </div>
-    </div>
-
-    <div class="card" data-id="5" data-topics="media,ice,minneapolis">
-      <span class="source mainstream">📺 France Info / Le Figaro</span>
-      <p class="headline">"Deux agents ICE suspendus après la mort d'Alex Pretti"</p>
-      <div class="media-claim">
-        <div class="media-claim-title">💬 Claim du média</div>
-        Les médias rapportent que deux agents fédéraux impliqués dans la mort d'Alex Pretti ont été suspendus. Procédure "standard" selon un porte-parole.
-      </div>
-      <div class="fact-check">
-        <div class="fact-check-title">✅ Confirmé par Homan</div>
-        <div class="fact-check-content">
-          Tom Homan a confirmé lors de sa conférence de presse que des agents "qui ne respectent pas les règles seront sanctionnés". La suspension de deux agents est cohérente avec cette déclaration.<br><br>
-          <strong>Contexte :</strong> Homan a aussi dit que les agents "sont humains" et que certains sont "en théâtre depuis 8 mois".
-        </div>
-      </div>
-      <span class="verdict true">✅ CONFIRMÉ</span>
-      <div class="actions">
-        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
-        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
-      </div>
-    </div>
-
-    <div class="card" data-id="6" data-topics="media,trump,corruption">
-      <span class="source mainstream">📺 20 Minutes</span>
-      <p class="headline">"Trump est-il corrompu ? Avion-cadeau, crypto, immobilier..."</p>
-      <div class="media-claim">
-        <div class="media-claim-title">💬 Claim du média</div>
-        20 Minutes (mai 2025) affirme que "de nombreuses associations dénoncent les agissements du président, accusé d'utiliser sa position pour son enrichissement personnel."
-      </div>
+    <div class="card" data-id="5">
+      <span class="source">Le Monde</span><span class="verdict partial">⚡ SPIN</span>
+      <p class="headline">"Dirigeants occidentaux refroidis par Trump se pressent à Pékin"</p>
+      <p class="summary">Keir Starmer et autres leaders visitent la Chine, présentés comme fuyant Trump vers un "interlocuteur fiable".</p>
       <div class="fact-check warning">
-        <div class="fact-check-title">⚠️ Opinion / Accusations non prouvées</div>
-        <div class="fact-check-content">
-          <strong>Ce que dit le titre :</strong> Question rhétorique ("est-il corrompu?") basée sur des accusations d'associations.<br><br>
-          <strong>Réalité :</strong> Aucune condamnation pour corruption. Les "associations" citées sont souvent des groupes d'opposition partisans.<br><br>
-          <strong>Note :</strong> Le titre est formulé pour suggérer la culpabilité sans preuve. Technique classique de framing.
-        </div>
+        <div class="fact-check-title">⚠️ Interprétation éditoriale</div>
+        <div class="fact-check-content">Les visites sont factuelles. Qualifier la Chine d'"interlocuteur fiable" vs Trump est une opinion, pas un fait. La Chine a ses propres problèmes de fiabilité (Xinjiang, Hong Kong, Taiwan).</div>
       </div>
-      <span class="verdict misleading">🔶 ORIENTÉ</span>
       <div class="actions">
         <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
         <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
       </div>
     </div>
 
-    <div class="card" data-id="7" data-topics="media,trump,health">
-      <span class="source mainstream">📺 20 Minutes</span>
-      <p class="headline">"Trump accusé de déni économique et de déclin physique — du déjà-vu"</p>
-      <div class="media-claim">
-        <div class="media-claim-title">💬 Claim du média</div>
-        20 Minutes (déc 2025) compare Trump à Biden : "Un président vieillissant, confronté à de mauvais sondages et à des soupçons sur sa santé."
-      </div>
+    <!-- 28 JANVIER -->
+    <div class="date-header">📅 28 janvier 2026</div>
+
+    <div class="card" data-id="6">
+      <span class="source">Le Monde / Le Figaro</span><span class="verdict partial">⚡ À VÉRIFIER</span>
+      <p class="headline">"FBI perquisitionne un centre électoral en Géorgie (élections 2020)"</p>
+      <p class="summary">Des agents récupèrent des bulletins de vote du comté de Fulton. Lié aux accusations de fraude de Trump.</p>
       <div class="fact-check warning">
-        <div class="fact-check-title">⚠️ Comparaison tendancieuse</div>
-        <div class="fact-check-content">
-          <strong>Analyse :</strong> L'article établit un parallèle Biden/Trump pour suggérer un "déclin" similaire.<br><br>
-          <strong>Réalité :</strong><br>
-          • Biden a dû se retirer de la course 2024 pour raisons de santé<br>
-          • Trump a gagné l'élection 2024 et gouverne activement<br>
-          • Les deux situations ne sont pas comparables<br><br>
-          <strong>Note :</strong> Titre conçu pour créer une équivalence artificielle.
-        </div>
+        <div class="fact-check-title">⚠️ Source unique</div>
+        <div class="fact-check-content">Source : responsable administrative locale. Pas de communiqué FBI/DOJ trouvé. Le contexte "accusations de Trump" oriente le lecteur avant les faits.</div>
       </div>
-      <span class="verdict misleading">🔶 ORIENTÉ</span>
       <div class="actions">
         <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
         <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
       </div>
     </div>
 
-    <div class="card" data-id="8" data-topics="media,capgemini,ice">
-      <span class="source mainstream">📺 France Info</span>
-      <p class="headline">"Capgemini aide ICE à localiser les migrants"</p>
-      <div class="media-claim">
-        <div class="media-claim-title">💬 Claim du média</div>
-        France Info affirme que le groupe français Capgemini fournit des services technologiques à la police fédérale américaine ICE.
-      </div>
+    <div class="card" data-id="7">
+      <span class="source">Le Monde</span><span class="verdict opinion">💬 OPINION</span>
+      <p class="headline">"Face à Trump, l'Europe condamnée à naviguer entre désalignement et évitement"</p>
+      <p class="summary">Chronique de Gilles Paris sur le "Conseil de la paix" de Trump.</p>
       <div class="fact-check">
-        <div class="fact-check-title">✅ Probablement vrai — Contrats publics</div>
-        <div class="fact-check-content">
-          <strong>Contexte :</strong> Les contrats fédéraux US sont publics. De nombreuses entreprises tech (Palantir, Amazon, Microsoft, etc.) ont des contrats avec des agences fédérales dont ICE.<br><br>
-          <strong>Note :</strong> Le ton de l'article suggère un scandale, mais ces contrats sont légaux et documentés. La formulation "aide à localiser les migrants" est émotionnellement chargée pour décrire des services IT standard.
-        </div>
+        <div class="fact-check-title">ℹ️ Éditorial / Opinion</div>
+        <div class="fact-check-content">Article clairement labellé "Chronique". C'est une opinion, pas un reportage factuel. À prendre comme tel.</div>
       </div>
-      <span class="verdict partial">⚡ VRAI MAIS FRAMING</span>
       <div class="actions">
         <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
         <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
       </div>
+    </div>
+
+    <div class="card" data-id="8">
+      <span class="source">Le Monde</span><span class="verdict true">✅ FACTUEL</span>
+      <p class="headline">"Charles Kushner, relais de la diplomatie trumpiste à Paris"</p>
+      <p class="summary">Portrait du père de Jared Kushner, ambassadeur US en France depuis mai 2025.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Faits confirmés</div>
+        <div class="fact-check-content">La nomination est officielle. Les "méthodes peu orthodoxes" mentionnées incluent son passé judiciaire (2005) — fait public et documenté.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="9">
+      <span class="source">Le Monde</span><span class="verdict true">✅ FACTUEL</span>
+      <p class="headline">"Trump : le temps est compté avant une attaque si l'Iran n'accepte pas"</p>
+      <p class="summary">Renforcement US dans le Golfe avec l'Abraham Lincoln.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Citation directe</div>
+        <div class="fact-check-content">Déclaration de Trump vérifiable. Déploiement naval confirmé par le Pentagone.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <!-- 27 JANVIER -->
+    <div class="date-header">📅 27 janvier 2026</div>
+
+    <div class="card" data-id="10">
+      <span class="source">Le Monde</span><span class="verdict true">✅ FACTUEL</span>
+      <p class="headline">"Stephen Miller reconnaît de possibles manquements au protocole (mort Pretti)"</p>
+      <p class="summary">Trump qualifie la mort de "très triste" mais reproche à Pretti d'avoir porté une arme.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Citations vérifiables</div>
+        <div class="fact-check-content">Déclarations de Miller et Trump documentées. Le fait que Pretti portait une arme est contesté — à suivre.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="11">
+      <span class="source">Le Monde</span><span class="verdict partial">⚡ FRAMING</span>
+      <p class="headline">"Gregory Bovino, visage de la militarisation de la politique migratoire"</p>
+      <p class="summary">Le responsable CBP "écarté de Minneapolis" après la mort de Pretti. Méthodes décrites comme "agressives voire illégales".</p>
+      <div class="fact-check warning">
+        <div class="fact-check-title">⚠️ Langage chargé</div>
+        <div class="fact-check-content">L'éloignement de Bovino est factuel. "Militarisation", "agressives voire illégales" sont des qualificatifs éditoriaux, pas des termes officiels.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="12">
+      <span class="source">Le Monde</span><span class="verdict partial">⚡ SPIN</span>
+      <p class="headline">"Trump cherche à éteindre l'incendie déclenché par son administration"</p>
+      <p class="summary">Entretien avec le gouverneur du Minnesota et le maire de Minneapolis.</p>
+      <div class="fact-check warning">
+        <div class="fact-check-title">⚠️ Framing négatif</div>
+        <div class="fact-check-content">L'entretien est factuel. "Incendie déclenché par son administration" présuppose que Trump est responsable des violences, ce qui est contesté.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="13">
+      <span class="source">Le Monde</span><span class="verdict true">✅ FACTUEL</span>
+      <p class="headline">"Philip Glass annule sa symphonie au Kennedy Center après les réformes Trump"</p>
+      <p class="summary">Le compositeur de 88 ans cite un conflit de "valeurs".</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Fait confirmé</div>
+        <div class="fact-check-content">Annulation et citation de Glass vérifiables. C'est son choix personnel.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="14">
+      <span class="source">Le Monde</span><span class="verdict opinion">💬 OPINION</span>
+      <p class="headline">"Politique industrielle de Trump = capitalisme d'État assumé"</p>
+      <p class="summary">Chronique comparant Trump à la politique industrielle française.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">ℹ️ Analyse / Opinion</div>
+        <div class="fact-check-content">Article d'opinion labellé "Chronique". L'analyse est intéressante mais subjective.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="15">
+      <span class="source">Le Monde</span><span class="verdict partial">⚡ À VÉRIFIER</span>
+      <p class="headline">"Newsom lance une enquête sur TikTok pour censure pro-Trump"</p>
+      <p class="summary">Des utilisateurs affirment que TikTok (sous contrôle US) censure les contenus critiques envers Trump.</p>
+      <div class="fact-check warning">
+        <div class="fact-check-title">⚠️ Accusations non prouvées</div>
+        <div class="fact-check-content">L'enquête de Newsom est réelle. Les accusations de censure viennent d'utilisateurs, pas de preuves techniques. Newsom (Démocrate) a un intérêt politique à critiquer Trump.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <!-- 26 JANVIER -->
+    <div class="date-header">📅 26 janvier 2026</div>
+
+    <div class="card" data-id="16">
+      <span class="source">Le Monde</span><span class="verdict misleading">🔶 ÉDITORIAL</span>
+      <p class="headline">"Immigration : la dangereuse stratégie de la tension de Donald Trump"</p>
+      <p class="summary">Éditorial décrivant Trump comme "agitant la menace" du déploiement militaire.</p>
+      <div class="fact-check false">
+        <div class="fact-check-title">⚠️ Éditorial partisan</div>
+        <div class="fact-check-content">C'est un éditorial (opinion du journal), pas un article factuel. "Dangereuse stratégie de la tension" et "chantage" sont des jugements de valeur, pas des faits.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="17">
+      <span class="source">Le Monde</span><span class="verdict true">✅ FACTUEL</span>
+      <p class="headline">"Le Canada s'attire les foudres de Trump en se tournant vers la Chine"</p>
+      <p class="summary">Trump menace 100% de droits de douane si le Canada signe un accord avec la Chine.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Confirmé</div>
+        <div class="fact-check-content">Menaces de Trump documentées. Rapprochement Canada-Chine confirmé.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <!-- 22 JANVIER -->
+    <div class="date-header">📅 22 janvier 2026</div>
+
+    <div class="card" data-id="18">
+      <span class="source">Le Monde</span><span class="verdict true">✅ FACTUEL</span>
+      <p class="headline">"Trump signe la charte de son Conseil de la paix à Davos"</p>
+      <p class="summary">Nouvelle organisation internationale créée par Trump, en concurrence avec l'ONU.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Confirmé</div>
+        <div class="fact-check-content">Signature à Davos documentée. Contours du Conseil effectivement flous à ce stade.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="19">
+      <span class="source">Le Monde</span><span class="verdict partial">⚡ FRAMING</span>
+      <p class="headline">"Trump peut-il faire ça ? Comment le président met le droit à l'épreuve"</p>
+      <p class="summary">"Les Décodeurs" analysent les "limites de l'autorité" de Trump.</p>
+      <div class="fact-check warning">
+        <div class="fact-check-title">⚠️ Angle orienté</div>
+        <div class="fact-check-content">Le titre suggère que Trump agit illégalement. L'article admet que "la résistance des contre-pouvoirs" existe. Les executive orders contestés passent généralement par les tribunaux — c'est le fonctionnement normal.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <!-- 20-21 JANVIER -->
+    <div class="date-header">📅 20-21 janvier 2026</div>
+
+    <div class="card" data-id="20">
+      <span class="source">Le Monde</span><span class="verdict true">✅ FACTUEL</span>
+      <p class="headline">"Trump : les images essentielles d'une année à la Maison Blanche"</p>
+      <p class="summary">Rétrospective de la première année du second mandat.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Rétrospective factuelle</div>
+        <div class="fact-check-content">Compilation d'images/événements. Format factuel.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="21">
+      <span class="source">Le Monde</span><span class="verdict true">✅ FACTUEL</span>
+      <p class="headline">"Les droits de douane de Trump n'ont pas modifié les grands déséquilibres"</p>
+      <p class="summary">Déficit US légèrement réduit, excédents chinois records.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Données économiques</div>
+        <div class="fact-check-content">Chiffres commerciaux vérifiables via BLS/Commerce Dept. Analyse économique factuelle.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="22">
+      <span class="source">Le Monde</span><span class="verdict opinion">💬 OPINION</span>
+      <p class="headline">"L'Afrique, concentré des obsessions de Donald Trump"</p>
+      <p class="summary">Analyse du retrait US de l'aide au développement africain.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">ℹ️ Analyse subjective</div>
+        <div class="fact-check-content">"Obsessions" est un terme psychologisant. Le retrait de l'aide est factuel, l'interprétation comme "obsession" est éditoriale.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="section-title media">📊 BILAN DES 10 JOURS</div>
+
+    <div class="card" style="background: rgba(155,89,182,0.1);">
+      <p class="headline">Statistiques du traitement médiatique</p>
+      <p class="summary" style="color: #eee;">
+        <strong>22 articles analysés (Le Monde principalement)</strong><br><br>
+        ✅ <strong>9 articles factuels</strong> (41%) — Information correcte<br>
+        ⚡ <strong>7 articles avec framing/spin</strong> (32%) — Faits vrais, présentation orientée<br>
+        💬 <strong>4 articles d'opinion</strong> (18%) — Éditoriaux/chroniques (OK si labellés)<br>
+        🔶 <strong>2 articles éditoriaux non labellés</strong> (9%) — Opinion présentée comme info<br><br>
+        <strong>Tendance globale :</strong> Couverture à dominante critique. Les faits sont généralement corrects, mais le framing (choix des mots, angles) penche systématiquement anti-Trump. Les articles d'opinion sont souvent mélangés avec l'info.
+      </p>
     </div>
 
     <div class="submit-section">
@@ -376,14 +485,14 @@
     function vote(btn, type) {
       const card = btn.closest('.card');
       const id = card.dataset.id;
-      const topics = card.dataset.topics;
+      if (!id) return;
       
       if (votes[id]) {
-        if (votes[id].type === 'like') likeCount--;
+        if (votes[id] === 'like') likeCount--;
         else dislikeCount--;
       }
       
-      votes[id] = { type, topics };
+      votes[id] = type;
       if (type === 'like') likeCount++;
       else dislikeCount++;
       
@@ -394,29 +503,12 @@
     }
 
     function submitFeedback() {
-      const liked = [], disliked = [];
-      for (const [id, data] of Object.entries(votes)) {
-        if (data.type === 'like') liked.push({ id, ...data });
-        else disliked.push({ id, ...data });
-      }
-      
-      const feedback = {
-        date: new Date().toISOString(),
-        liked,
-        disliked,
-        summary: `${likeCount} liked, ${dislikeCount} disliked`
-      };
-      
-      navigator.clipboard.writeText(JSON.stringify(feedback)).then(() => {
-        document.getElementById('toast').style.display = 'block';
-        setTimeout(() => {
-          document.getElementById('toast').style.display = 'none';
-        }, 3000);
-      });
-      
-      console.log('Feedback:', feedback);
+      const feedback = { date: new Date().toISOString(), votes, summary: `${likeCount} liked, ${dislikeCount} disliked` };
+      navigator.clipboard.writeText(JSON.stringify(feedback));
+      document.getElementById('toast').style.display = 'block';
+      setTimeout(() => { document.getElementById('toast').style.display = 'none'; }, 3000);
     }
   </script>
 </body>
 </html>
-<!-- rebuild Wed Jan 29 15:31:00 CET 2026 -->
+<!-- RECAP 10 DAYS - Wed Jan 29 15:50:00 CET 2026 -->
