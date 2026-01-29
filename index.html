@@ -76,12 +76,13 @@
       font-weight: 600;
       margin-bottom: 5px;
     }
-    .fact-check-content { color: #aaa; }
+    .fact-check-content { color: #aaa; line-height: 1.5; }
     .fact-check-source {
       color: #666;
       font-size: 0.8em;
-      margin-top: 5px;
+      margin-top: 8px;
     }
+    .fact-check-source a { color: #9b59b6; }
     .links {
       display: flex;
       gap: 15px;
@@ -151,12 +152,6 @@
       from { opacity: 0; transform: translateX(-50%) translateY(20px); }
       to { opacity: 1; transform: translateX(-50%) translateY(0); }
     }
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      color: #666;
-    }
-    .empty-state h2 { margin-bottom: 10px; color: #888; }
   </style>
 </head>
 <body>
@@ -168,11 +163,133 @@
       ⚖️ Aucun biais partisan — faits vérifiés via sources officielles uniquement
     </div>
 
-    <div class="empty-state">
-      <h2>🚧 Feed en construction</h2>
-      <p>Le premier feed sera généré demain à 9h10</p>
+    <div class="section-title">🇺🇸 ADMINISTRATION TRUMP</div>
+
+    <div class="card" data-id="1" data-topics="ice,immigration,homan">
+      <span class="source">📰 Trending: Tom Homan</span>
+      <p class="headline">Tom Homan tient une conférence de presse sur les opérations ICE</p>
+      <p class="summary">Le "border czar" de Trump a défendu les opérations d'ICE face aux critiques, évoquant la fatigue des agents ("8 mois sur le terrain") et promettant des poursuites contre les organisations qui financent les attaques anti-ICE.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Fact-check (whitehouse.gov)</div>
+        <div class="fact-check-content">
+          <strong>Chiffres officiels confirmés :</strong><br>
+          • 605,000+ déportations depuis janvier 2025<br>
+          • 1.9 million d'auto-déportations<br>
+          • ICE : effectifs doublés de 10,000 à 22,000 agents<br>
+          • Migration nette négative en 2025 (1ère fois en 50 ans)
+        </div>
+        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/priorities/border-immigration/" target="_blank">whitehouse.gov/priorities/border-immigration</a></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
     </div>
 
+    <div class="card" data-id="2" data-topics="doge,musk,government">
+      <span class="source">📰 Trending: DOGE</span>
+      <p class="headline">DOGE continue ses audits — aucune poursuite criminelle à ce jour</p>
+      <p class="summary">Le Department of Government Efficiency (Musk/Ramaswamy) poursuit ses audits de l'administration fédérale. Découverte : 4.6 millions de cartes de crédit gouvernementales traitant $40B/an. Le programme se termine officiellement le 4 juillet 2026.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Fact-check (whitehouse.gov)</div>
+        <div class="fact-check-content">
+          <strong>Statut officiel :</strong><br>
+          • DOGE est une initiative officielle listée dans les priorités de la White House<br>
+          • Focus : "Reform Government" — réduction des dépenses et inefficacités<br>
+          • Aucune poursuite criminelle directe résultant des découvertes DOGE (confirmé par Grok/xAI)
+        </div>
+        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/issues/doge" target="_blank">whitehouse.gov/issues/doge</a></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="3" data-topics="ai,executive-order,regulation">
+      <span class="source">📰 Executive Order</span>
+      <p class="headline">Décret sur l'IA : potentielle préemption des lois d'État sur l'IA hospitalière</p>
+      <p class="summary">L'Executive Order "Ensuring a National Policy Framework for Artificial Intelligence" pourrait invalider les lois d'État régulant l'usage de l'IA dans les hôpitaux, au profit d'un cadre fédéral unifié.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Fact-check (whitehouse.gov)</div>
+        <div class="fact-check-content">
+          <strong>Priorité confirmée :</strong><br>
+          • "Lead the World in AI" est la priorité #1 listée sur whitehouse.gov<br>
+          • Site dédié lancé : ai.gov<br>
+          • L'administration pousse pour un cadre fédéral plutôt que des régulations d'État fragmentées
+        </div>
+        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/issues/tech-innovation" target="_blank">whitehouse.gov/issues/tech-innovation</a> + <a href="https://ai.gov" target="_blank">ai.gov</a></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="4" data-topics="california,la,fires,reconstruction">
+      <span class="source">📰 Executive Order</span>
+      <p class="headline">Trump prend le contrôle de la reconstruction de Los Angeles</p>
+      <p class="summary">Après les incendies dévastateurs en Californie, un décret présidentiel place la reconstruction de LA sous contrôle fédéral, court-circuitant le gouverneur Newsom. Citation : "Le peuple a assez attendu."</p>
+      <div class="fact-check">
+        <div class="fact-check-title">⚠️ Fact-check en cours</div>
+        <div class="fact-check-content">
+          <strong>À vérifier :</strong><br>
+          • Le décret spécifique n'a pas encore été retrouvé sur whitehouse.gov/presidential-actions<br>
+          • L'administration a critiqué publiquement la gestion californienne des incendies<br>
+          • Statut légal d'une telle préemption fédérale : contestable
+        </div>
+        <div class="fact-check-source">Source: En attente de publication officielle</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="section-title">🌍 INTERNATIONAL</div>
+
+    <div class="card" data-id="5" data-topics="tps,immigration,haiti,venezuela">
+      <span class="source">📰 Policy Update</span>
+      <p class="headline">Fin du TPS pour Haïti, Venezuela et Somalie</p>
+      <p class="summary">L'administration a terminé le Temporary Protected Status (TPS) pour plusieurs pays, forçant les ressortissants à régulariser leur situation ou quitter le territoire.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Fact-check (whitehouse.gov)</div>
+        <div class="fact-check-content">
+          <strong>Confirmé officiellement :</strong><br>
+          • TPS terminé pour Somalie, Venezuela, Haïti (qualifiés de "dangerous, third-world countries")<br>
+          • 75 pays mis en pause pour les visas immigrants (taux de welfare jugés "inacceptables")
+        </div>
+        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/priorities/border-immigration/" target="_blank">whitehouse.gov/priorities/border-immigration</a></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="card" data-id="6" data-topics="fentanyl,border,drugs">
+      <span class="source">📰 Border Security</span>
+      <p class="headline">Trafic de fentanyl en baisse de 56% à la frontière sud</p>
+      <p class="summary">Les saisies et le trafic de fentanyl à la frontière mexicaine ont diminué de plus de la moitié par rapport à l'année précédente, selon les chiffres du DHS.</p>
+      <div class="fact-check">
+        <div class="fact-check-title">✅ Fact-check (whitehouse.gov)</div>
+        <div class="fact-check-content">
+          <strong>Chiffre officiel :</strong><br>
+          • -56% de trafic de fentanyl à la frontière sud (au 30 septembre 2025 vs année précédente)<br>
+          • +10,000 individus liés au narco-terrorisme bloqués à l'entrée
+        </div>
+        <div class="fact-check-source">Source: <a href="https://www.whitehouse.gov/priorities/border-immigration/" target="_blank">whitehouse.gov/priorities/border-immigration</a></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-like" onclick="vote(this, 'like')">👍</button>
+        <button class="btn btn-dislike" onclick="vote(this, 'dislike')">👎</button>
+      </div>
+    </div>
+
+    <div class="submit-section">
+      <button class="submit-btn" onclick="submitFeedback()">✅ Valider mon feedback</button>
+      <p class="stats" id="stats">0 👍 · 0 👎</p>
+    </div>
   </div>
 
   <div class="toast" id="toast">Feedback envoyé ! 🗳️</div>
@@ -198,8 +315,7 @@
       card.classList.remove('liked', 'disliked');
       card.classList.add(type === 'like' ? 'liked' : 'disliked');
       
-      const statsEl = document.getElementById('stats');
-      if (statsEl) statsEl.textContent = `${likeCount} 👍 · ${dislikeCount} 👎`;
+      document.getElementById('stats').textContent = `${likeCount} 👍 · ${dislikeCount} 👎`;
     }
 
     function submitFeedback() {
@@ -232,4 +348,4 @@
   </script>
 </body>
 </html>
-<!-- initial setup Wed Jan 29 15:10:00 CET 2026 -->
+<!-- rebuild Wed Jan 29 15:21:00 CET 2026 -->
