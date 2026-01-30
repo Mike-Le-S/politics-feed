@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Politics Feed 🗳️</title>
+  <title>Politics Feed 🗳️ - 30 Janvier 2026</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -13,9 +13,10 @@
       color: #eee;
       padding: 20px;
     }
-    .container { max-width: 850px; margin: 0 auto; }
-    h1 { text-align: center; margin-bottom: 10px; font-size: 1.8em; }
-    .subtitle { text-align: center; color: #888; margin-bottom: 20px; font-size: 0.9em; }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { text-align: center; margin-bottom: 10px; font-size: 2em; }
+    .subtitle { text-align: center; color: #888; margin-bottom: 5px; font-size: 0.95em; }
+    .date { text-align: center; color: #3498db; margin-bottom: 20px; font-size: 0.9em; font-weight: 600; }
     .disclaimer {
       background: rgba(241,196,15,0.1);
       border: 1px solid rgba(241,196,15,0.3);
@@ -26,314 +27,597 @@
       color: #f1c40f;
       text-align: center;
     }
-    .section-title {
-      font-size: 1.2em;
-      margin: 30px 0 15px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #e74c3c;
+    .stats-banner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 25px;
     }
-    .section-title.compare { border-color: #3498db; }
-    .section-title.media { border-color: #9b59b6; }
+    .stat-item {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 15px 10px;
+      text-align: center;
+    }
+    .stat-number { font-size: 1.8em; font-weight: 700; }
+    .stat-number.blue { color: #3498db; }
+    .stat-number.green { color: #27ae60; }
+    .stat-number.orange { color: #f39c12; }
+    .stat-number.red { color: #e74c3c; }
+    .stat-label { font-size: 0.75em; color: #888; margin-top: 5px; }
+    
+    .section-title {
+      font-size: 1.3em;
+      margin: 35px 0 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e74c3c;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title.blue { border-color: #3498db; }
+    .section-title.green { border-color: #27ae60; }
+    .section-title.purple { border-color: #9b59b6; }
+    .section-title.orange { border-color: #f39c12; }
+    
+    .topic-card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
     .topic-header {
-      background: linear-gradient(90deg, rgba(231,76,60,0.3), transparent);
-      padding: 10px 15px;
-      border-radius: 8px;
-      margin: 20px 0 12px;
+      background: linear-gradient(90deg, rgba(231,76,60,0.4), rgba(231,76,60,0.1));
+      padding: 12px 16px;
       font-weight: 700;
       font-size: 1.1em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .comparison-grid {
-      display: grid;
-      gap: 8px;
-      margin-bottom: 20px;
+    .topic-content { padding: 16px; }
+    
+    .source-section {
+      margin-bottom: 15px;
     }
-    .media-row {
+    .source-label {
+      font-size: 0.8em;
+      font-weight: 600;
+      color: #888;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .source-label.media { color: #3498db; }
+    .source-label.twitter { color: #1da1f2; }
+    .source-label.factcheck { color: #27ae60; }
+    
+    .media-item {
       display: grid;
-      grid-template-columns: 100px 1fr 80px;
+      grid-template-columns: 90px 1fr auto;
       gap: 10px;
       align-items: center;
-      background: rgba(255,255,255,0.03);
-      padding: 10px 12px;
+      padding: 8px 10px;
+      background: rgba(255,255,255,0.02);
       border-radius: 6px;
+      margin-bottom: 6px;
       border-left: 3px solid #3498db;
     }
-    .media-name { color: #3498db; font-weight: 600; font-size: 0.85em; }
-    .media-title { font-size: 0.9em; line-height: 1.4; }
-    .verdict-badge {
-      padding: 4px 8px;
-      border-radius: 10px;
-      font-size: 0.7em;
-      font-weight: 600;
-      text-align: center;
-    }
-    .verdict-badge.true { background: #27ae60; }
-    .verdict-badge.framing { background: #f39c12; }
-    .verdict-badge.opinion { background: #9b59b6; }
-    .verdict-badge.misleading { background: #e74c3c; }
-    .analysis-box {
-      background: rgba(52,152,219,0.1);
-      border: 1px solid rgba(52,152,219,0.3);
+    .media-name { color: #3498db; font-weight: 600; font-size: 0.8em; }
+    .media-title { font-size: 0.88em; line-height: 1.4; }
+    
+    .twitter-box {
+      background: rgba(29,161,242,0.08);
+      border: 1px solid rgba(29,161,242,0.2);
       border-radius: 8px;
       padding: 12px;
-      margin: 10px 0 20px;
-      font-size: 0.85em;
+      font-size: 0.88em;
+      line-height: 1.5;
     }
-    .analysis-box strong { color: #3498db; }
-    .card {
-      background: rgba(255,255,255,0.05);
+    
+    .factcheck-box {
+      background: rgba(39,174,96,0.1);
+      border: 1px solid rgba(39,174,96,0.3);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 0.88em;
+    }
+    .factcheck-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .factcheck-item:last-child { margin-bottom: 0; }
+    
+    .verdict {
+      display: inline-block;
+      padding: 3px 8px;
       border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 12px;
-      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.7em;
+      font-weight: 700;
+      white-space: nowrap;
     }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      margin: 20px 0;
-    }
-    .stat-box {
-      background: rgba(255,255,255,0.05);
+    .verdict.confirmed { background: #27ae60; }
+    .verdict.framing { background: #f39c12; }
+    .verdict.context { background: #9b59b6; }
+    .verdict.false { background: #e74c3c; }
+    .verdict.unverified { background: #95a5a6; }
+    
+    .divergence-card {
+      background: rgba(155,89,182,0.1);
+      border: 1px solid rgba(155,89,182,0.3);
       border-radius: 10px;
       padding: 15px;
-      text-align: center;
+      margin-bottom: 12px;
     }
-    .stat-number { font-size: 2em; font-weight: 700; }
-    .stat-label { font-size: 0.8em; color: #888; margin-top: 5px; }
-    .stat-box.green .stat-number { color: #2ecc71; }
-    .stat-box.orange .stat-number { color: #f39c12; }
-    .stat-box.purple .stat-number { color: #9b59b6; }
-    .stat-box.red .stat-number { color: #e74c3c; }
-    .flag { font-size: 1.2em; margin-right: 5px; }
-    .sources-used {
+    .divergence-title {
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #9b59b6;
+    }
+    
+    .bullshit-card {
+      background: rgba(241,196,15,0.08);
+      border: 1px solid rgba(241,196,15,0.25);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 12px;
+    }
+    .bullshit-title {
+      font-weight: 700;
+      color: #f1c40f;
+      margin-bottom: 8px;
+    }
+    .bullshit-text {
+      font-size: 0.9em;
+      line-height: 1.6;
+      font-style: italic;
+    }
+    
+    .reliability-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+    .reliability-item {
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      padding: 12px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 15px 0;
+      justify-content: space-between;
+      align-items: center;
     }
-    .source-tag {
-      background: rgba(255,255,255,0.1);
-      padding: 5px 10px;
-      border-radius: 15px;
+    .reliability-name { font-weight: 600; }
+    .reliability-score { font-weight: 700; }
+    .reliability-score.good { color: #27ae60; }
+    .reliability-score.medium { color: #f39c12; }
+    .reliability-score.bad { color: #e74c3c; }
+    
+    .footer {
+      text-align: center;
+      color: #666;
       font-size: 0.8em;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
-    .source-tag.ch { border: 1px solid #e74c3c; }
-    .source-tag.fr { border: 1px solid #3498db; }
+    
+    @media (max-width: 600px) {
+      .stats-banner { grid-template-columns: repeat(2, 1fr); }
+      .media-item { grid-template-columns: 1fr; }
+      .media-name { margin-bottom: 4px; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>🗳️ Politics Feed</h1>
-    <p class="subtitle">5 derniers jours (24-29 janvier 2026) • Comparaison inter-médias</p>
+    <p class="subtitle">Médias vs Twitter — Fact-Check Quotidien</p>
+    <p class="date">📅 Vendredi 30 Janvier 2026 • 09:10 CET</p>
     
     <div class="disclaimer">
-      ⚖️ Même sujet, différents médias — Compare les titres et détecte les biais
+      ⚠️ Ce rapport compare les narratifs médiatiques et Twitter, puis fact-checke avec des sources primaires.<br>
+      Aucun parti pris politique — juste du fact-checking impitoyable sur le bullshit des deux côtés.
     </div>
-
-    <div class="sources-used">
-      <span class="source-tag ch">🇨🇭 Le Temps</span>
-      <span class="source-tag ch">🇨🇭 Watson</span>
-      <span class="source-tag ch">🇨🇭 RTS</span>
-      <span class="source-tag fr">🇫🇷 Le Monde</span>
-      <span class="source-tag fr">🇫🇷 Le Figaro</span>
-      <span class="source-tag fr">🇫🇷 France Info</span>
-    </div>
-
-    <div class="section-title compare">🔍 COMPARAISON PAR SUJET</div>
-
-    <!-- SUJET 1: MINNEAPOLIS / ICE -->
-    <div class="topic-header">📍 MINNEAPOLIS — Mort d'Alex Pretti & opérations ICE</div>
     
-    <div class="comparison-grid">
-      <div class="media-row">
-        <span class="media-name">🇫🇷 Le Monde</span>
-        <span class="media-title">"Minneapolis, <b>laboratoire</b> de la politique anti-immigration de Trump"</span>
-        <span class="verdict-badge framing">⚡ FRAMING</span>
+    <div class="stats-banner">
+      <div class="stat-item">
+        <div class="stat-number blue">12</div>
+        <div class="stat-label">Articles analysés</div>
       </div>
-      <div class="media-row">
-        <span class="media-name">🇫🇷 Le Monde</span>
-        <span class="media-title">"Trump cherche à <b>éteindre l'incendie déclenché par son administration</b>"</span>
-        <span class="verdict-badge framing">⚡ FRAMING</span>
+      <div class="stat-item">
+        <div class="stat-number orange">38</div>
+        <div class="stat-label">Tweets checkés</div>
       </div>
-      <div class="media-row">
-        <span class="media-name">🇫🇷 Le Monde</span>
-        <span class="media-title">"Gregory Bovino, visage de la <b>militarisation</b> de la politique migratoire"</span>
-        <span class="verdict-badge framing">⚡ FRAMING</span>
+      <div class="stat-item">
+        <div class="stat-number green">8</div>
+        <div class="stat-label">Claims vérifiés</div>
       </div>
-      <div class="media-row">
-        <span class="media-name">🇨🇭 Watson</span>
-        <span class="media-title">"Trump tente d'éteindre l'incendie à Minneapolis"</span>
-        <span class="verdict-badge framing">⚡ FRAMING</span>
-      </div>
-      <div class="media-row">
-        <span class="media-name">🇨🇭 Watson</span>
-        <span class="media-title">"<b>L'Amérique a honte</b>" (Commentaire)</span>
-        <span class="verdict-badge opinion">💬 OPINION</span>
-      </div>
-      <div class="media-row">
-        <span class="media-name">🇨🇭 Watson</span>
-        <span class="media-title">"Qui est <b>«Gestapo Greg»</b>, le cauchemar des sans-papiers?"</span>
-        <span class="verdict-badge misleading">🔶 ORIENTÉ</span>
-      </div>
-      <div class="media-row">
-        <span class="media-name">🇨🇭 Le Temps</span>
-        <span class="media-title">"Comment Trump a fait de l'ICE une agence <b>toute-puissante</b>?"</span>
-        <span class="verdict-badge framing">⚡ FRAMING</span>
-      </div>
-      <div class="media-row">
-        <span class="media-name">🇨🇭 Watson</span>
-        <span class="media-title">"Les policiers qui ont tiré sur Alex Pretti suspendus"</span>
-        <span class="verdict-badge true">✅ FACTUEL</span>
-      </div>
-      <div class="media-row">
-        <span class="media-name">🇫🇷 Le Monde</span>
-        <span class="media-title">"Trump reconnaît la nécessité d'améliorations"</span>
-        <span class="verdict-badge true">✅ FACTUEL</span>
+      <div class="stat-item">
+        <div class="stat-number red">3</div>
+        <div class="stat-label">Bullshit détecté</div>
       </div>
     </div>
 
-    <div class="analysis-box">
-      <strong>🔎 ANALYSE :</strong> 9 articles sur Minneapolis — <b>78% utilisent un framing négatif</b> (laboratoire, incendie, militarisation, Gestapo). Seuls 2 articles sont purement factuels. Watson utilise "Gestapo Greg" — comparaison nazie non justifiée. <b>Narratif dominant :</b> Trump responsable des violences.
+    <!-- SUJET 1: IRAN -->
+    <div class="topic-card">
+      <div class="topic-header">🚢 Trump vs Iran — "Armada" et Menaces Nucléaires</div>
+      <div class="topic-content">
+        
+        <div class="source-section">
+          <div class="source-label media">📰 CE QUE DISENT LES MÉDIAS</div>
+          <div class="media-item">
+            <span class="media-name">Le Monde</span>
+            <span class="media-title">"Le temps est compté" avant une attaque si l'Iran n'accepte pas un accord</span>
+            <span class="verdict framing">⚡ FRAMING</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">NYT</span>
+            <span class="media-title">Trump Warns Iran With Military Muscle, but Risks a Regional War</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">Guardian</span>
+            <span class="media-title">Threat of US-Iran war escalates — armada "prepared for violence"</span>
+            <span class="verdict framing">⚡ FRAMING</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">Reuters</span>
+            <span class="media-title">Trump weighs new military options — has not authorized action yet</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+        </div>
+        
+        <div class="source-section">
+          <div class="source-label twitter">🐦 CE QUE DIT TWITTER</div>
+          <div class="twitter-box">
+            <strong>Sentiment dominant :</strong> Alarmisme et spéculation sur une guerre imminente.<br><br>
+            • "What Will Happen If Trump Invades Iran Like Venezuela?" — Republic (média indien)<br>
+            • Comptes influents parlent de "cibles nucléaires déjà listées" avec Israël + pays arabes<br>
+            • Rumeurs de Forces Spéciales US en route vers l'Azerbaïdjan (non confirmé)<br>
+            • Beaucoup de comparaisons avec l'intervention Venezuela (enlèvement Maduro)
+          </div>
+        </div>
+        
+        <div class="source-section">
+          <div class="source-label factcheck">🔍 FACT-CHECK</div>
+          <div class="factcheck-box">
+            <div class="factcheck-item">
+              <span class="verdict confirmed">✅</span>
+              <span><strong>Armada en mouvement :</strong> CONFIRMÉ — USS Abraham Lincoln + groupe aéronaval déployés (source: Pentagon)</span>
+            </div>
+            <div class="factcheck-item">
+              <span class="verdict confirmed">✅</span>
+              <span><strong>Menaces de Trump :</strong> CONFIRMÉ — Posts Truth Social authentiques, demande "NO NUCLEAR WEAPONS"</span>
+            </div>
+            <div class="factcheck-item">
+              <span class="verdict context">🔶</span>
+              <span><strong>"Guerre imminente" :</strong> CONTEXTE MANQUANT — NYT confirme qu'aucune action militaire n'a été autorisée. Pression diplomatique ≠ guerre décidée.</span>
+            </div>
+            <div class="factcheck-item">
+              <span class="verdict unverified">❓</span>
+              <span><strong>Forces spéciales en Azerbaïdjan :</strong> NON VÉRIFIABLE — Aucune source primaire trouvée</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- SUJET 2: IRAN -->
-    <div class="topic-header">🇮🇷 IRAN — Tensions & porte-avions</div>
+    <!-- SUJET 2: FED -->
+    <div class="topic-card">
+      <div class="topic-header">🏦 Fed vs Trump — Taux d'Intérêt et Nomination du Nouveau Patron</div>
+      <div class="topic-content">
+        
+        <div class="source-section">
+          <div class="source-label media">📰 CE QUE DISENT LES MÉDIAS</div>
+          <div class="media-item">
+            <span class="media-name">Le Figaro</span>
+            <span class="media-title">Trump estime que la Fed devrait "baisser substantiellement" ses taux</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">Reuters</span>
+            <span class="media-title">Fed leaves rates unchanged at 3.5-3.75%, sees "elevated" inflation</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">Le Monde</span>
+            <span class="media-title">Fed halts rate cuts amid dollar plunge and pressure from Trump</span>
+            <span class="verdict framing">⚡ FRAMING</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">Yahoo Finance</span>
+            <span class="media-title">Decision not unanimous — 2 FOMC members voted for 25bp cut</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+        </div>
+        
+        <div class="source-section">
+          <div class="source-label twitter">🐦 CE QUE DIT TWITTER</div>
+          <div class="twitter-box">
+            <strong>Sentiment dominant :</strong> Panique sur Kevin Warsh (candidat "hawk") + crypto en dump.<br><br>
+            • Reuters officiel : "Trump to announce Fed chair nominee Friday morning"<br>
+            • Crypto Twitter en mode panique : "Warsh is a hawk = higher rates = crypto crash"<br>
+            • Contre-narratif intelligent : "Warsh will cut rates for Trump anyway" (pragmatisme politique)<br>
+            • Un compte debunk : "Trump's disinformation — Powell never said inflation is no longer a threat"
+          </div>
+        </div>
+        
+        <div class="source-section">
+          <div class="source-label factcheck">🔍 FACT-CHECK</div>
+          <div class="factcheck-box">
+            <div class="factcheck-item">
+              <span class="verdict confirmed">✅</span>
+              <span><strong>Taux maintenus 3.5-3.75% :</strong> CONFIRMÉ — Source: FRED St. Louis Fed (données officielles)</span>
+            </div>
+            <div class="factcheck-item">
+              <span class="verdict confirmed">✅</span>
+              <span><strong>Vote non-unanime :</strong> CONFIRMÉ — Miran et Waller ont voté pour une baisse de 25bp</span>
+            </div>
+            <div class="factcheck-item">
+              <span class="verdict framing">⚡</span>
+              <span><strong>"Dollar plunge" :</strong> FRAMING — Le dollar fluctue mais "plunge" est exagéré sans données contextuelles</span>
+            </div>
+            <div class="factcheck-item">
+              <span class="verdict confirmed">✅</span>
+              <span><strong>Annonce vendredi matin :</strong> CONFIRMÉ — Trump l'a dit lui-même, "quelqu'un de très bien"</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUJET 3: CANADA/BOMBARDIER -->
+    <div class="topic-card">
+      <div class="topic-header">✈️ Trump vs Canada — Guerre Bombardier/Gulfstream</div>
+      <div class="topic-content">
+        
+        <div class="source-section">
+          <div class="source-label media">📰 CE QUE DISENT LES MÉDIAS</div>
+          <div class="media-item">
+            <span class="media-name">Le Monde</span>
+            <span class="media-title">Trump retire la certification d'avions Bombardier et "tous les aéronefs fabriqués au Canada"</span>
+            <span class="verdict framing">⚡ FRAMING</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">Reuters</span>
+            <span class="media-title">Trump threatens 50% tariffs, decertification — it's a threat, not action yet</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">CBC</span>
+            <span class="media-title">Trump threatening to "decertify" Canadian planes, experts say he lacks authority</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">CTV</span>
+            <span class="media-title">Trump claims Canada unfairly blocked US jet sales — Gulfstream certification dispute</span>
+            <span class="verdict context">🔶 CONTEXTE</span>
+          </div>
+        </div>
+        
+        <div class="source-section">
+          <div class="source-label twitter">🐦 CE QUE DIT TWITTER</div>
+          <div class="twitter-box">
+            <strong>Sentiment dominant :</strong> Confusion sur les pouvoirs réels de Trump + drama Canada-US.<br><br>
+            • Grok (IA de X) : "Experts note he lacks direct authority—it's the FAA's domain"<br>
+            • CTV Kitchener : "Trump has no authority to decertify Canadian aircraft"<br>
+            • Pro-Trump : "Canada has been bleeding the US with tariffs for decades — good on him!"<br>
+            • Analyse sérieuse rare — surtout du relay d'articles
+          </div>
+        </div>
+        
+        <div class="source-section">
+          <div class="source-label factcheck">🔍 FACT-CHECK</div>
+          <div class="factcheck-box">
+            <div class="factcheck-item">
+              <span class="verdict confirmed">✅</span>
+              <span><strong>Menace de 50% tarifs :</strong> CONFIRMÉ — Post Truth Social vérifié par tous les médias</span>
+            </div>
+            <div class="factcheck-item">
+              <span class="verdict context">🔶</span>
+              <span><strong>"Décertification" :</strong> CONTEXTE MANQUANT — Trump a MENACÉ mais n'a pas le pouvoir direct. La FAA gère les certifications pour raisons de SÉCURITÉ, pas de commerce.</span>
+            </div>
+            <div class="factcheck-item">
+              <span class="verdict framing">⚡</span>
+              <span><strong>Le Monde dit "retire la certification" :</strong> FRAMING — C'est une menace, pas une action effective. Titre trompeur.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUJET 4: IRS LAWSUIT -->
+    <div class="topic-card">
+      <div class="topic-header">💰 Trump vs IRS — Procès à $10 Milliards</div>
+      <div class="topic-content">
+        
+        <div class="source-section">
+          <div class="source-label media">📰 CE QUE DISENT LES MÉDIAS</div>
+          <div class="media-item">
+            <span class="media-name">Le Figaro</span>
+            <span class="media-title">Donald Trump réclame 10 milliards au fisc américain après divulgation de ses impôts</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">Reuters</span>
+            <span class="media-title">Trump sues IRS, Treasury for $10B over tax return leak — filed in Miami</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">WaPo</span>
+            <span class="media-title">Trump has again filed a claim against the government he oversees</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">NYT</span>
+            <span class="media-title">Trump Sues I.R.S. Over Tax Data Leak — also demanded $230M from DOJ</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+        </div>
+        
+        <div class="source-section">
+          <div class="source-label factcheck">🔍 FACT-CHECK</div>
+          <div class="factcheck-box">
+            <div class="factcheck-item">
+              <span class="verdict confirmed">✅</span>
+              <span><strong>Lawsuit déposé :</strong> CONFIRMÉ — Tribunal fédéral de Miami, 29 janvier 2026</span>
+            </div>
+            <div class="factcheck-item">
+              <span class="verdict confirmed">✅</span>
+              <span><strong>$10 milliards demandés :</strong> CONFIRMÉ — Inclut Trump + fils + Trump Organization comme plaignants</span>
+            </div>
+            <div class="factcheck-item">
+              <span class="verdict confirmed">✅</span>
+              <span><strong>Fuite par Charles Littlejohn :</strong> CONFIRMÉ — Ancien employé IRS condamné en 2024 pour les fuites</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUJET 5: ROLEX SUISSE -->
+    <div class="topic-card">
+      <div class="topic-header">🇨🇭 Affaire Rolex — Suisse, Cadeaux et Tarifs</div>
+      <div class="topic-content">
+        
+        <div class="source-section">
+          <div class="source-label media">📰 CE QUE DISENT LES MÉDIAS</div>
+          <div class="media-item">
+            <span class="media-name">Le Temps</span>
+            <span class="media-title">"Un apparent conflit d'intérêts" — Rolex et lingot d'or dans le viseur du Sénat</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">Reuters</span>
+            <span class="media-title">Sen. Wyden asks USTR for answers on Swiss tariff moves after gifts</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+          <div class="media-item">
+            <span class="media-name">Bloomberg</span>
+            <span class="media-title">Swiss exports to US hit record despite high tariffs — Rolex/gold bar mentioned</span>
+            <span class="verdict confirmed">✅ FACTUEL</span>
+          </div>
+        </div>
+        
+        <div class="source-section">
+          <div class="source-label twitter">🐦 CE QUE DIT TWITTER</div>
+          <div class="twitter-box">
+            <strong>Sentiment dominant :</strong> "C'est un pot-de-vin, point."<br><br>
+            • Daily Beast (62 likes) : "Swiss gave Trump gold Rolex + 1kg gold bar a week before favorable tariff cut"<br>
+            • Chris Mac : "It's a bribe, he's been bribed by every country, violating Emoluments Clause"<br>
+            • TomInStL : "I gotta admit the Swiss guy made a good deal" (cynisme)<br>
+            • Swiss Green Party a demandé une enquête aux procureurs suisses (novembre 2025)
+          </div>
+        </div>
+        
+        <div class="source-section">
+          <div class="source-label factcheck">🔍 FACT-CHECK</div>
+          <div class="factcheck-box">
+            <div class="factcheck-item">
+              <span class="verdict confirmed">✅</span>
+              <span><strong>Cadeaux reçus :</strong> CONFIRMÉ — Horloge Rolex + lingot 1kg, valeur ~$130,000</span>
+            </div>
+            <div class="factcheck-item">
+              <span class="verdict confirmed">✅</span>
+              <span><strong>Tarifs réduits après :</strong> CONFIRMÉ — De 39% à 15% après réception des cadeaux</span>
+            </div>
+            <div class="factcheck-item">
+              <span class="verdict confirmed">✅</span>
+              <span><strong>Enquête Sénat :</strong> CONFIRMÉ — Sen. Wyden (Dem) a envoyé une lettre officielle au USTR</span>
+            </div>
+            <div class="factcheck-item">
+              <span class="verdict unverified">❓</span>
+              <span><strong>"Pot-de-vin" :</strong> NON VÉRIFIABLE juridiquement — Enquête en cours, pas de verdict légal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIVERGENCES -->
+    <h2 class="section-title purple">📊 Divergences Médias vs Twitter</h2>
     
-    <div class="comparison-grid">
-      <div class="media-row">
-        <span class="media-name">🇫🇷 Le Monde</span>
-        <span class="media-title">"Trump <b>intensifie la pression</b> avec l'envoi d'un porte-avions"</span>
-        <span class="verdict-badge true">✅ FACTUEL</span>
-      </div>
-      <div class="media-row">
-        <span class="media-name">🇨🇭 Le Temps</span>
-        <span class="media-title">"Téhéran promet une <b>riposte écrasante</b>"</span>
-        <span class="verdict-badge true">✅ FACTUEL</span>
-      </div>
-      <div class="media-row">
-        <span class="media-name">🇨🇭 RTS</span>
-        <span class="media-title">"L'Iran se dit prêt à une <b>riposte écrasante</b>"</span>
-        <span class="verdict-badge true">✅ FACTUEL</span>
-      </div>
-      <div class="media-row">
-        <span class="media-name">🇨🇭 Watson</span>
-        <span class="media-title">"Un porte-avions américain <b>ravive les tensions</b>"</span>
-        <span class="verdict-badge true">✅ FACTUEL</span>
-      </div>
+    <div class="divergence-card">
+      <div class="divergence-title">🇮🇷 Sur l'Iran : Twitter plus alarmiste</div>
+      <p>Les médias mainstream rapportent les menaces de Trump avec prudence ("weighing options", "has not authorized action"). Twitter spécule sur une guerre imminente, des cibles nucléaires déjà listées, et des forces spéciales en mouvement. <strong>Verdict :</strong> Les médias sont plus précis ici — aucune action n'a été autorisée.</p>
     </div>
-
-    <div class="analysis-box">
-      <strong>🔎 ANALYSE :</strong> 4 articles sur l'Iran — <b>100% factuels</b>. Tous rapportent les mêmes faits (porte-avions, menaces, riposte). Couverture équilibrée entre positions US et iraniennes. <b>Pas de biais détecté</b> sur ce sujet.
-    </div>
-
-    <!-- SUJET 3: FBI GÉORGIE -->
-    <div class="topic-header">🗳️ FBI — Perquisition bulletins Géorgie (2020)</div>
     
-    <div class="comparison-grid">
-      <div class="media-row">
-        <span class="media-name">🇫🇷 Le Monde</span>
-        <span class="media-title">"FBI perquisitionne un centre électoral en Géorgie — <b>Trump veut se venger</b>"</span>
-        <span class="verdict-badge framing">⚡ FRAMING</span>
-      </div>
-      <div class="media-row">
-        <span class="media-name">🇨🇭 Watson</span>
-        <span class="media-title">"Le FBI perquisitionne un centre électoral en Géorgie"</span>
-        <span class="verdict-badge true">✅ FACTUEL</span>
-      </div>
-      <div class="media-row">
-        <span class="media-name">🇫🇷 Le Figaro</span>
-        <span class="media-title">"FBI perquisitionne un centre au cœur des <b>accusations de Trump</b>"</span>
-        <span class="verdict-badge framing">⚡ FRAMING</span>
-      </div>
+    <div class="divergence-card">
+      <div class="divergence-title">🏦 Sur la Fed : Twitter a un scoop</div>
+      <p>Twitter (via Reuters et comptes crypto) parlait de Kevin Warsh comme favori AVANT que les médias FR ne le mentionnent. Le narratif "hawk = crypto dump" s'est propagé sur Twitter bien avant l'analyse des médias traditionnels. <strong>Verdict :</strong> Twitter était en avance sur ce coup.</p>
     </div>
-
-    <div class="analysis-box">
-      <strong>🔎 ANALYSE :</strong> Même fait, 3 traitements différents. Le Monde ajoute "veut se venger" (intention prêtée). Le Figaro utilise "accusations de Trump" (contexte orienté). Watson reste factuel. <b>Biais FR > CH</b> sur ce sujet.
-    </div>
-
-    <!-- SUJET 4: MELANIA / DOCUMENTAIRE -->
-    <div class="topic-header">🎬 MELANIA — Documentaire à 75M$</div>
     
-    <div class="comparison-grid">
-      <div class="media-row">
-        <span class="media-name">🇨🇭 Le Temps</span>
-        <span class="media-title">"Documentaire à 75M$ sur Melania <b>agite la presse américaine</b>"</span>
-        <span class="verdict-badge true">✅ FACTUEL</span>
-      </div>
-      <div class="media-row">
-        <span class="media-name">🇫🇷 France Info</span>
-        <span class="media-title">"<b>Fiasco annoncé</b> et <b>film de propagande</b>" (politologue)</span>
-        <span class="verdict-badge opinion">💬 OPINION</span>
-      </div>
-      <div class="media-row">
-        <span class="media-name">🇨🇭 Watson</span>
-        <span class="media-title">"Même Melania Trump est fâchée" (Analyse)</span>
-        <span class="verdict-badge opinion">💬 OPINION</span>
-      </div>
+    <div class="divergence-card">
+      <div class="divergence-title">🇨🇭 Sur la Rolex : Twitter dit "bribe", médias disent "conflit d'intérêts"</div>
+      <p>Twitter utilise ouvertement le mot "bribe" (pot-de-vin). Les médias restent prudents avec "apparent conflit d'intérêts" et "enquête en cours". <strong>Verdict :</strong> Juridiquement, les médias ont raison d'être prudents. Mais Twitter n'a pas tort sur le fond — ça sent le soufre.</p>
     </div>
 
-    <div class="analysis-box">
-      <strong>🔎 ANALYSE :</strong> Le Temps factuel. France Info qualifie de "propagande" et "fiasco" via un "expert". Watson titre sur l'émotion (fâchée). <b>Registre émotionnel dominant</b> côté FR.
-    </div>
-
-    <!-- SUJET 5: ARME SUISSE -->
-    <div class="topic-header">🇨🇭 ANGLE SUISSE — Arme SIG utilisée par ICE</div>
+    <!-- TRIBUNAL DU BULLSHIT -->
+    <h2 class="section-title orange">⚖️🧂 Le Tribunal du Bullshit</h2>
     
-    <div class="comparison-grid">
-      <div class="media-row">
-        <span class="media-name">🇨🇭 Watson</span>
-        <span class="media-title">"<b>«Scandaleux»</b>: une arme suisse utilisée par l'ICE à Minneapolis"</span>
-        <span class="verdict-badge framing">⚡ FRAMING</span>
+    <div class="bullshit-card">
+      <div class="bullshit-title">🏆 Prix du Framing du Jour : Le Monde</div>
+      <div class="bullshit-text">
+        "Trump dit retirer la certification d'avions Bombardier" — Non, il a MENACÉ de le faire. Et il n'a même pas l'autorité pour. Le titre fait croire que c'est fait alors que c'est du bluff diplomatique. Bravo pour le clic, mais c'est du sensationnalisme.
       </div>
-      <div class="media-row">
-        <span class="media-name">🇨🇭 Watson</span>
-        <span class="media-title">"Trump juge le pistolet de l'armée suisse <b>«très dangereux»</b>"</span>
-        <span class="verdict-badge true">✅ FACTUEL</span>
+    </div>
+    
+    <div class="bullshit-card">
+      <div class="bullshit-title">🎪 Prix de l'Absurdité : Trump vs Trump</div>
+      <div class="bullshit-text">
+        Trump poursuit le gouvernement qu'il dirige pour $10 milliards. Il est littéralement des deux côtés de la table de négociation. C'est comme se poursuivre soi-même pour diffamation. Le Washington Post l'a noté, mais la plupart des médias ont traité ça comme une news normale. LOL.
+      </div>
+    </div>
+    
+    <div class="bullshit-card">
+      <div class="bullshit-title">💤 Prix de l'Excuse du Siècle</div>
+      <div class="bullshit-text">
+        Trump accusé de s'être endormi en conseil des ministres ? Sa défense : "C'était un peu ennuyeux". Mon frère en Christ, c'est TON gouvernement, TES ministres, TA réunion. Si tu t'ennuies, c'est peut-être toi le problème ? Le Figaro a relayé ça sans sourciller. Merci pour le fou rire.
       </div>
     </div>
 
-    <div class="analysis-box">
-      <strong>🔎 ANALYSE :</strong> Watson crée un angle suisse sensationnaliste. Le fait qu'ICE utilise des SIG (fabricant suisse) n'est pas "scandaleux" — c'est un contrat commercial standard. <b>Angle localiste pour générer de l'indignation.</b>
+    <!-- FIABILITÉ -->
+    <h2 class="section-title green">📈 Fiabilité du Jour</h2>
+    
+    <div class="reliability-grid">
+      <div class="reliability-item">
+        <span class="reliability-name">Reuters</span>
+        <span class="reliability-score good">⭐ 95%</span>
+      </div>
+      <div class="reliability-item">
+        <span class="reliability-name">NYT</span>
+        <span class="reliability-score good">⭐ 90%</span>
+      </div>
+      <div class="reliability-item">
+        <span class="reliability-name">Le Temps</span>
+        <span class="reliability-score good">⭐ 88%</span>
+      </div>
+      <div class="reliability-item">
+        <span class="reliability-name">Le Figaro</span>
+        <span class="reliability-score medium">⚡ 78%</span>
+      </div>
+      <div class="reliability-item">
+        <span class="reliability-name">Guardian</span>
+        <span class="reliability-score medium">⚡ 75%</span>
+      </div>
+      <div class="reliability-item">
+        <span class="reliability-name">Le Monde</span>
+        <span class="reliability-score medium">⚡ 72%</span>
+      </div>
     </div>
+    <p style="margin-top: 12px; font-size: 0.8em; color: #888; text-align: center;">
+      Score basé sur précision factuelle vs framing excessif dans les articles analysés aujourd'hui uniquement.
+    </p>
 
-    <div class="section-title media">📊 STATISTIQUES GLOBALES — 5 JOURS</div>
-
-    <div class="stats-grid">
-      <div class="stat-box green">
-        <div class="stat-number">35%</div>
-        <div class="stat-label">✅ Factuel</div>
-      </div>
-      <div class="stat-box orange">
-        <div class="stat-number">40%</div>
-        <div class="stat-label">⚡ Framing</div>
-      </div>
-      <div class="stat-box purple">
-        <div class="stat-number">15%</div>
-        <div class="stat-label">💬 Opinion</div>
-      </div>
-      <div class="stat-box red">
-        <div class="stat-number">10%</div>
-        <div class="stat-label">🔶 Misleading</div>
-      </div>
+    <div class="footer">
+      <p>🥔 Généré par Rösti • Fact-check automatisé • Sources : Médias FR/CH/US + Twitter/X</p>
+      <p style="margin-top: 8px;">Dernière mise à jour : 30 janvier 2026, 09:10 CET</p>
     </div>
-
-    <div class="card" style="background: rgba(155,89,182,0.1);">
-      <p style="font-size: 1.05em; line-height: 1.6;">
-        <strong>🎯 CONCLUSIONS :</strong><br><br>
-        
-        <strong>1. Narratif uniforme :</strong> Tous les médias FR + CH utilisent le même cadrage sur Minneapolis (Trump = responsable). Pas de voix dissidente dans le mainstream.<br><br>
-        
-        <strong>2. Iran = couverture équilibrée :</strong> Quand le sujet n'est pas "Trump domestique", la couverture devient factuelle.<br><br>
-        
-        <strong>3. 🇨🇭 vs 🇫🇷 :</strong> Watson (CH) utilise des termes plus agressifs ("Gestapo Greg", "scandaleux"). Le Temps reste le plus factuel. Le Monde mélange info et éditorial.<br><br>
-        
-        <strong>4. Technique récurrente :</strong> Ajouter des qualificatifs ("laboratoire", "militarisation", "incendie") aux faits neutres pour orienter la perception.<br><br>
-        
-        <strong>5. Ce qui manque :</strong> Aucun média n'a cité les chiffres officiels de whitehouse.gov (605K déportations, 2.5M départs, -56% fentanyl).
-      </p>
-    </div>
-
   </div>
 </body>
 </html>
-<!-- COMPARAISON 5 JOURS - Thu Jan 29 16:20:00 CET 2026 -->
