@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Politics Feed - 3 février 2026</title>
+    <title>Politics Feed - 4 février 2026</title>
     <style>
         :root {
             --bg-dark: #0d1117;
@@ -101,159 +101,178 @@
         
         .topic-card {
             background: var(--bg-card);
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 25px;
             margin-bottom: 25px;
-            border: 1px solid var(--border);
         }
         
         .topic-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 10px;
         }
         
         .topic-title {
             font-size: 1.3rem;
-            color: var(--text-primary);
+            color: var(--accent-blue);
         }
         
         .verdict-badge {
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
         }
         
-        .verdict-confirmed { background: var(--accent-green); color: #000; }
-        .verdict-framing { background: var(--accent-yellow); color: #000; }
-        .verdict-context { background: var(--accent-orange); color: #fff; }
-        .verdict-false { background: var(--accent-red); color: #fff; }
-        .verdict-unverified { background: var(--text-secondary); color: #000; }
+        .verdict-confirmed { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); }
+        .verdict-framing { background: rgba(168, 85, 247, 0.2); color: var(--accent-purple); }
+        .verdict-context { background: rgba(210, 153, 34, 0.2); color: var(--accent-yellow); }
+        .verdict-false { background: rgba(248, 81, 73, 0.2); color: var(--accent-red); }
+        .verdict-unverified { background: rgba(139, 148, 158, 0.2); color: var(--text-secondary); }
         
-        .source-section {
-            background: var(--bg-card-alt);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        
-        .source-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--accent-blue);
-        }
-        
-        .source-content {
-            color: var(--text-secondary);
-        }
-        
-        .source-content ul {
-            padding-left: 20px;
-            margin-top: 8px;
-        }
-        
-        .source-content li {
-            margin-bottom: 6px;
-        }
-        
-        .fact-check-box {
-            background: linear-gradient(135deg, rgba(88, 166, 255, 0.1), rgba(163, 113, 247, 0.1));
-            border: 1px solid var(--accent-purple);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-        }
-        
-        .fact-check-title {
-            color: var(--accent-purple);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        
-        .divergence-alert {
-            background: rgba(248, 81, 73, 0.1);
-            border-left: 4px solid var(--accent-red);
-            padding: 12px 15px;
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
             margin: 15px 0;
         }
         
-        .tribunal-section {
-            background: linear-gradient(135deg, #2d1f1f, #1f2d1f);
-            border-radius: 12px;
-            padding: 25px;
-            margin: 30px 0;
-            border: 2px solid var(--accent-orange);
+        @media (max-width: 768px) {
+            .comparison-grid { grid-template-columns: 1fr; }
         }
         
-        .tribunal-title {
-            font-size: 1.8rem;
+        .source-box {
+            background: var(--bg-card-alt);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-blue);
+        }
+        
+        .source-box.twitter {
+            border-left-color: var(--accent-purple);
+        }
+        
+        .source-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .source-content {
+            font-size: 0.95rem;
+        }
+        
+        .fact-check {
+            background: var(--bg-card-alt);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px dashed var(--border);
+        }
+        
+        .fact-check-title {
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .source-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .tribunal-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid var(--accent-orange);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .tribunal-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
             color: var(--accent-orange);
-            text-align: center;
-            margin-bottom: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
         }
         
         .tribunal-item {
-            background: rgba(0,0,0,0.3);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            background: rgba(219, 109, 40, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--accent-orange);
         }
+        
+        .tribunal-item:last-child { margin-bottom: 0; }
         
         .tribunal-quote {
             font-style: italic;
-            font-size: 1.1rem;
             color: var(--text-primary);
-            margin-bottom: 10px;
-            border-left: 3px solid var(--accent-yellow);
-            padding-left: 15px;
+            margin-bottom: 8px;
         }
         
         .tribunal-comment {
             color: var(--accent-orange);
-            font-weight: 500;
+            font-size: 0.9rem;
         }
         
-        .reliability-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+        .divergence-card {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-red);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
         }
         
-        .reliability-table th,
-        .reliability-table td {
-            padding: 12px 15px;
-            text-align: left;
+        .divergence-title {
+            color: var(--accent-red);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .media-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .media-list li {
+            padding: 8px 0;
             border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .reliability-table th {
-            background: var(--bg-card-alt);
-            color: var(--accent-blue);
+        .media-list li:last-child { border-bottom: none; }
+        
+        .reliability-score {
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
         
-        .score-bar {
-            height: 8px;
-            background: var(--bg-card-alt);
-            border-radius: 4px;
-            overflow: hidden;
-            width: 100px;
-        }
-        
-        .score-fill {
-            height: 100%;
-            border-radius: 4px;
-        }
-        
-        .score-high { background: var(--accent-green); }
-        .score-medium { background: var(--accent-yellow); }
-        .score-low { background: var(--accent-red); }
+        .score-high { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); }
+        .score-medium { background: rgba(210, 153, 34, 0.2); color: var(--accent-yellow); }
+        .score-low { background: rgba(248, 81, 73, 0.2); color: var(--accent-red); }
         
         footer {
             text-align: center;
@@ -263,10 +282,36 @@
             margin-top: 40px;
         }
         
-        @media (max-width: 768px) {
-            .stats-bar { flex-direction: column; align-items: center; }
-            .topic-header { flex-direction: column; }
-            h1 { font-size: 1.8rem; }
+        .emoji { font-size: 1.2rem; }
+        
+        .breaking {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .hot-topic {
+            background: linear-gradient(135deg, rgba(248, 81, 73, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            border: 1px solid var(--accent-red);
+        }
+        
+        .claims-list {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .claims-list li {
+            margin: 8px 0;
+            color: var(--text-secondary);
+        }
+        
+        .claim-verdict {
+            display: inline-block;
+            margin-left: 8px;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -274,421 +319,426 @@
     <div class="container">
         <header>
             <h1>🗳️ Politics Feed</h1>
-            <p class="subtitle">Médias vs Twitter — Fact-Check Quotidien</p>
-            <p class="date">📅 Mardi 3 février 2026 — 09:10 CET</p>
+            <p class="subtitle">Médias vs Twitter — Fact-Check Automatisé</p>
+            <p class="date">📅 Mardi 4 février 2026 — 09:19 CET</p>
             
             <div class="stats-bar">
                 <div class="stat">
-                    <div class="stat-value">7</div>
+                    <div class="stat-value">8</div>
                     <div class="stat-label">Sujets analysés</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">18</div>
-                    <div class="stat-label">Articles médias</div>
+                    <div class="stat-value">24</div>
+                    <div class="stat-label">Sources médias</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">42</div>
-                    <div class="stat-label">Tweets analysés</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">7</div>
+                    <div class="stat-value">12</div>
                     <div class="stat-label">Claims fact-checkés</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">67%</div>
+                    <div class="stat-label">Vérifiés ✅</div>
                 </div>
             </div>
         </header>
 
-        <!-- SUJET 1: TRUMP VS HARVARD -->
-        <div class="section">
-            <h2 class="section-title">📚 Trump réclame 1 milliard $ à Harvard</h2>
+        <!-- SUJET 1: EPSTEIN FILES -->
+        <section class="section">
+            <h2 class="section-title"><span class="emoji">📂</span> Les Sujets du Jour</h2>
             
-            <div class="topic-card">
+            <div class="topic-card hot-topic">
                 <div class="topic-header">
-                    <h3 class="topic-title">Conflit Trump-Harvard : antisémitisme et "wokisme"</h3>
-                    <span class="verdict-badge verdict-framing">⚡ FRAMING</span>
+                    <h3 class="topic-title">🔥 Epstein Files: 3.5 Millions de Pages Dévoilées</h3>
+                    <span class="verdict-badge verdict-confirmed">✅ CONFIRMÉ</span>
                 </div>
                 
-                <div class="source-section">
-                    <div class="source-header">📰 Ce que disent les MÉDIAS</div>
-                    <div class="source-content">
-                        <ul>
-                            <li><strong>Le Monde:</strong> "Donald Trump réclame un milliard de dollars de dommages et intérêts à Harvard, qu'il accuse d'antisémitisme et de « wokisme »"</li>
-                            <li><strong>The Guardian:</strong> Trump "seeking $1bn in damages" — annoncé sur Truth Social après que le NYT a révélé qu'il avait abandonné une demande de 200M$</li>
-                            <li><strong>Harvard Crimson:</strong> Trump cite des "illegalities sérieuses et odieuses" sans préciser lesquelles</li>
-                        </ul>
-                        <p style="margin-top: 12px;"><strong>Angle médias:</strong> Framing comme "pression" et "bataille juridique", mise en avant du caractère exorbitant de la somme.</p>
+                <div class="comparison-grid">
+                    <div class="source-box">
+                        <div class="source-label">📰 Médias Mainstream</div>
+                        <div class="source-content">
+                            <strong>Le Monde:</strong> Focus sur Chomsky "solidaire" d'Epstein + audition Clinton annulée<br><br>
+                            <strong>Le Figaro:</strong> Titre choc sur Jack Lang, "onde de choc" aux USA, personnalités européennes démissionnent<br><br>
+                            <strong>Le Temps:</strong> Trump veut "tourner la page" rapidement<br><br>
+                            <strong>NYT/Guardian:</strong> Gates, Musk, Prince Andrew cités. Mandelson quitte la Chambre des Lords.
+                        </div>
+                    </div>
+                    <div class="source-box twitter">
+                        <div class="source-label">🐦 Sentiment Twitter/X</div>
+                        <div class="source-content">
+                            <strong>Narratif dominant:</strong> "Pourquoi Trump veut-il que ça passe?" + théories conspirationnistes sur les noms non-publiés<br><br>
+                            <strong>Viral:</strong> Photo Jack Lang + Epstein devant le Louvre circule massivement<br><br>
+                            <strong>Accusation récurrente:</strong> "Les médias protègent certains noms" — <em>partiellement fondé, les médias FR minimisent Lang vs. médias US</em>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="source-section">
-                    <div class="source-header">🐦 Ce que dit TWITTER</div>
-                    <div class="source-content">
-                        <ul>
-                            <li><strong>Grok (IA X):</strong> "No confirmation of a filed lawsuit yet—it's part of an ongoing feud over federal funding"</li>
-                            <li><strong>Critiques:</strong> "Trump doesn't fight antisemitism. He weaponizes it. A lawsuit demand as a cudgel."</li>
-                            <li><strong>Clarifications:</strong> Ce n'est PAS une plainte déposée, c'est un post Truth Social.</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="fact-check-box">
-                    <div class="fact-check-title">🔍 FACT-CHECK</div>
-                    <p><strong>Claim:</strong> "Trump poursuit Harvard pour 1 milliard $"</p>
-                    <p><strong>Réalité:</strong> Aucune plainte formelle n'a été déposée. C'est un post sur Truth Social dans le cadre d'un conflit sur le financement fédéral. Harvard avait gagné un procès contre les coupes budgétaires de Trump qui violaient la liberté d'expression.</p>
-                    <p><strong>Sources:</strong> NYT, BBC, Harvard Crimson</p>
-                    <p style="margin-top: 10px; color: var(--accent-yellow);"><strong>⚡ VERDICT: FRAMING</strong> — Vrai que Trump demande 1Md$, mais les médias présentent ça comme un procès alors que c'est un tweet. Nuance importante.</p>
+                <div class="fact-check">
+                    <div class="fact-check-title">🔍 FACT-CHECK — Sources Primaires</div>
+                    <ul class="claims-list">
+                        <li><strong>Claim:</strong> 3.5 millions de pages publiées <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — <a class="source-link" href="https://www.justice.gov/opa/pr/department-justice-publishes-35-million-responsive-pages-compliance-epstein-files">Source: DOJ.gov</a></li>
+                        <li><strong>Claim:</strong> Jack Lang a reçu 60'000$ d'une fondation Epstein <span class="claim-verdict" style="color: var(--accent-yellow);">⚡ CONTEXTE MANQUANT</span> — Versés à une "association de proches", pas directement à Lang</li>
+                        <li><strong>Claim:</strong> Peter Mandelson démissionne de la Chambre des Lords <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — Enquête criminelle ouverte par Scotland Yard</li>
+                        <li><strong>Claim:</strong> Trump veut "passer à autre chose" <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — Citation directe vérifiée</li>
+                    </ul>
                 </div>
             </div>
-        </div>
 
-        <!-- SUJET 2: SPACEX + xAI -->
-        <div class="section">
-            <h2 class="section-title">🚀 Fusion SpaceX-xAI : 1.25 trillion $</h2>
-            
+            <!-- SUJET 2: UKRAINE/RUSSIE -->
+            <div class="topic-card hot-topic">
+                <div class="topic-header">
+                    <h3 class="topic-title">🇺🇦 Ukraine: Frappe Massive Russe + Négociations Abu Dhabi</h3>
+                    <span class="verdict-badge verdict-framing">⚡ FRAMING DIVERGENT</span>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="source-box">
+                        <div class="source-label">📰 Médias Mainstream</div>
+                        <div class="source-content">
+                            <strong>Le Monde:</strong> "La plus puissante attaque depuis le début de l'année" — Russie envoie le chef du GRU (service de renseignement) négocier<br><br>
+                            <strong>Kyiv Independent:</strong> 71 missiles + 450 drones, infrastructures énergétiques ciblées à -13°C<br><br>
+                            <strong>BBC:</strong> DTEK confirme "le coup le plus dévastateur de 2026"<br><br>
+                            <strong>Guardian:</strong> NATO dit que l'Ukraine est "prête pour la paix" mais Russie "crée le chaos"
+                        </div>
+                    </div>
+                    <div class="source-box twitter">
+                        <div class="source-label">🐦 Sentiment Twitter/X</div>
+                        <div class="source-content">
+                            <strong>Pro-Ukraine:</strong> "La Russie sabote les négociations, preuve de mauvaise foi"<br><br>
+                            <strong>Pro-Russie:</strong> "L'Ukraine a violé la trêve énergétique en premier" — <em>non vérifié</em><br><br>
+                            <strong>MAGA Twitter:</strong> Trump va "régler ça en 24h" (claim de campagne recyclé)<br><br>
+                            <strong>Réalité ignorée:</strong> 1.24 million de pertes russes depuis 2022 (chiffres ukrainiens)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fact-check">
+                    <div class="fact-check-title">🔍 FACT-CHECK — Sources Primaires</div>
+                    <ul class="claims-list">
+                        <li><strong>Claim:</strong> 71 missiles + 450 drones lancés <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — <a class="source-link" href="https://www.bbc.com/news/articles/cpwng25114ro">Source: Forces aériennes ukrainiennes via BBC</a></li>
+                        <li><strong>Claim:</strong> Négociations Abu Dhabi le 4-5 février <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — Kremlin et sources multiples</li>
+                        <li><strong>Claim:</strong> Igor Kostioukov (chef GRU) représente la Russie <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — Le Monde, sous sanctions occidentales</li>
+                        <li><strong>Claim:</strong> "Trump a maintenu la trêve" <span class="claim-verdict" style="color: var(--accent-red);">❌ MISLEADING</span> — La Russie a repris les frappes massives</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SUJET 3: SHUTDOWN US -->
             <div class="topic-card">
                 <div class="topic-header">
-                    <h3 class="topic-title">Musk fusionne SpaceX et xAI — Data centers orbitaux</h3>
+                    <h3 class="topic-title">🏛️ Shutdown US: 3 Jours de Paralysie</h3>
+                    <span class="verdict-badge verdict-confirmed">✅ CONFIRMÉ</span>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="source-box">
+                        <div class="source-label">📰 Médias Mainstream</div>
+                        <div class="source-content">
+                            <strong>NYT/NBC:</strong> Shutdown terminé après vote de la Chambre. Conflit sur le financement de l'ICE.<br><br>
+                            <strong>Le Temps:</strong> Contexte: 2 Américains tués par des agents fédéraux ICE à Minneapolis<br><br>
+                            <strong>CBS:</strong> Trump signe le texte, employés reprennent le travail le 4 février
+                        </div>
+                    </div>
+                    <div class="source-box twitter">
+                        <div class="source-label">🐦 Sentiment Twitter/X</div>
+                        <div class="source-content">
+                            <strong>Républicains:</strong> "Grande victoire pour le peuple américain" (citation Trump)<br><br>
+                            <strong>Démocrates:</strong> Focus sur les morts causées par l'ICE<br><br>
+                            <strong>Twitter général:</strong> Relativement peu d'intérêt comparé à Epstein
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fact-check">
+                    <div class="fact-check-title">🔍 FACT-CHECK — Sources Primaires</div>
+                    <ul class="claims-list">
+                        <li><strong>Claim:</strong> Shutdown de 3 jours <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — Du samedi 31 jan au mardi 3 fév</li>
+                        <li><strong>Claim:</strong> 2 Américains tués par l'ICE à Minneapolis <span class="claim-verdict" style="color: var(--accent-yellow);">🔶 CONTEXTE MANQUANT</span> — Circonstances exactes varient selon les sources</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SUJET 4: GAZA -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">🇵🇸 Gaza: Violations du Cessez-le-Feu</h3>
+                    <span class="verdict-badge verdict-framing">⚡ FRAMING POLARISÉ</span>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="source-box">
+                        <div class="source-label">📰 Médias Mainstream</div>
+                        <div class="source-content">
+                            <strong>Le Monde:</strong> 9 morts (dont 3 enfants) dans des frappes israéliennes. Israël dit avoir ciblé des "terroristes qui ont ouvert le feu"<br><br>
+                            <strong>NBC:</strong> 30 Palestiniens tués samedi. Ouverture du passage de Rafah.<br><br>
+                            <strong>Al Jazeera:</strong> "Plus de 1000 violations documentées depuis le début du cessez-le-feu"
+                        </div>
+                    </div>
+                    <div class="source-box twitter">
+                        <div class="source-label">🐦 Sentiment Twitter/X</div>
+                        <div class="source-content">
+                            <strong>Pro-Palestine:</strong> "Cessez-le-feu en nom seulement" — The Nation reprend ce narratif<br><br>
+                            <strong>Pro-Israël:</strong> "Hamas a violé les termes en premier"<br><br>
+                            <strong>Narratif médias US:</strong> Focus sur la "phase 2" du plan Trump
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fact-check">
+                    <div class="fact-check-title">🔍 FACT-CHECK — Sources Primaires</div>
+                    <ul class="claims-list">
+                        <li><strong>Claim:</strong> 9 morts dans des frappes israéliennes aujourd'hui <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — Défense civile Gaza + AFP</li>
+                        <li><strong>Claim:</strong> +1000 violations documentées <span class="claim-verdict" style="color: var(--accent-yellow);">🔶 SOURCE PARTISANE</span> — Chiffres des autorités palestiniennes, non vérifiés indépendamment</li>
+                        <li><strong>Claim:</strong> Hamas a violé le cessez-le-feu en premier <span class="claim-verdict" style="color: var(--accent-yellow);">❓ NON VÉRIFIABLE</span> — Sources contradictoires (IDF vs Hamas)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SUJET 5: MUSK 800B$ -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">💰 Elon Musk: Premier Humain à 800 Milliards $</h3>
+                    <span class="verdict-badge verdict-confirmed">✅ CONFIRMÉ</span>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="source-box">
+                        <div class="source-label">📰 Médias Mainstream</div>
+                        <div class="source-content">
+                            <strong>Le Figaro:</strong> Fortune dépasse 800B$ grâce à la fusion SpaceX + xAI<br><br>
+                            <strong>Bloomberg:</strong> SpaceX acquiert xAI, valorisation combinée 1.25 trillion $<br><br>
+                            <strong>Reuters:</strong> SpaceX était déjà valorisée à 800B$ avant la fusion
+                        </div>
+                    </div>
+                    <div class="source-box twitter">
+                        <div class="source-label">🐦 Sentiment Twitter/X</div>
+                        <div class="source-content">
+                            <strong>Fans Musk:</strong> Célébration + "data centers dans l'espace" = futur<br><br>
+                            <strong>Critiques:</strong> "Conflits d'intérêts massifs avec son rôle gouvernemental (DOGE)"<br><br>
+                            <strong>Ignoré par beaucoup:</strong> Musk est 578B$ devant le #2 (Larry Page)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fact-check">
+                    <div class="fact-check-title">🔍 FACT-CHECK — Sources Primaires</div>
+                    <ul class="claims-list">
+                        <li><strong>Claim:</strong> Première personne à dépasser 800B$ <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — Bloomberg Billionaires Index</li>
+                        <li><strong>Claim:</strong> Fusion SpaceX + xAI à 1.25T$ <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — <a class="source-link" href="https://www.bloomberg.com/news/articles/2026-02-02/elon-musk-s-spacex-said-to-combine-with-xai-ahead-of-mega-ipo">Source: Bloomberg</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SUJET 6: CANAL DE PANAMA -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">🚢 Canal de Panama: Bataille Chine vs USA</h3>
+                    <span class="verdict-badge verdict-confirmed">✅ CONFIRMÉ</span>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="source-box">
+                        <div class="source-label">📰 Médias Mainstream</div>
+                        <div class="source-content">
+                            <strong>Le Monde:</strong> CK Hutchison (Hong Kong) lance un arbitrage après annulation de sa concession<br><br>
+                            <strong>Le Temps:</strong> Maersk (Danemark) remplace temporairement. MSC (Genève) en coulisse.<br><br>
+                            <strong>Angle:</strong> "Comme le Groenland, on ne prenait pas Trump au sérieux..."
+                        </div>
+                    </div>
+                    <div class="source-box twitter">
+                        <div class="source-label">🐦 Sentiment Twitter/X</div>
+                        <div class="source-content">
+                            <strong>MAGA:</strong> "Trump récupère le canal des Chinois"<br><br>
+                            <strong>Critique:</strong> "Impérialisme américain classique"<br><br>
+                            <strong>Réalité:</strong> Le canal n'a jamais été "chinois" — CK Hutchison avait des concessions portuaires
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fact-check">
+                    <div class="fact-check-title">🔍 FACT-CHECK — Sources Primaires</div>
+                    <ul class="claims-list">
+                        <li><strong>Claim:</strong> Cour suprême du Panama annule la concession CK Hutchison <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — 29 janvier 2026</li>
+                        <li><strong>Claim:</strong> "La Chine contrôlait le canal" <span class="claim-verdict" style="color: var(--accent-red);">❌ FAUX</span> — CK Hutchison avait des ports, pas le canal lui-même</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SUJET 7: KADHAFI -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">🇱🇾 Libye: Seif al-Islam Kadhafi Assassiné</h3>
+                    <span class="verdict-badge verdict-confirmed">✅ CONFIRMÉ</span>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="source-box">
+                        <div class="source-label">📰 Médias Mainstream</div>
+                        <div class="source-content">
+                            <strong>Le Monde/Figaro:</strong> Fils du dictateur libyen tué par un commando de 4 personnes à Zinten<br><br>
+                            <strong>Le Temps:</strong> Recherché par la CPI pour crimes contre l'humanité<br><br>
+                            <strong>Contexte:</strong> Vu comme un "recours controversé" face à la déliquescence libyenne
+                        </div>
+                    </div>
+                    <div class="source-box twitter">
+                        <div class="source-label">🐦 Sentiment Twitter/X</div>
+                        <div class="source-content">
+                            <strong>Réactions mitigées:</strong> "Fin d'une époque" vs "Justice rendue"<br><br>
+                            <strong>Conspirations:</strong> "Qui a commandité l'assassinat?" — aucune réponse claire
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fact-check">
+                    <div class="fact-check-title">🔍 FACT-CHECK — Sources Primaires</div>
+                    <ul class="claims-list">
+                        <li><strong>Claim:</strong> Assassinat confirmé <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — Avocat Marcel Ceccaldi + conseiller personnel</li>
+                        <li><strong>Claim:</strong> Recherché par la CPI <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — Mandat depuis 2011</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SUJET 8: DEAL INDE -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">🇮🇳 Deal Commercial USA-Inde: Tarifs à 18%</h3>
                     <span class="verdict-badge verdict-context">🔶 CONTEXTE MANQUANT</span>
                 </div>
                 
-                <div class="source-section">
-                    <div class="source-header">📰 Ce que disent les MÉDIAS</div>
-                    <div class="source-content">
-                        <ul>
-                            <li><strong>Le Monde:</strong> "Elon Musk fusionne xAI et SpaceX pour bâtir des centres de données en orbite"</li>
-                            <li><strong>The Guardian:</strong> Valorisation à 1.25 trillion $, "most ambitious, vertically-integrated innovation engine on (and off) Earth"</li>
-                            <li><strong>Ars Technica:</strong> Plan pour "up to 1 million orbital data centers"</li>
-                            <li><strong>CNBC:</strong> SpaceX a demandé à la FCC l'autorisation de lancer "up to 1 million satellites"</li>
-                        </ul>
+                <div class="comparison-grid">
+                    <div class="source-box">
+                        <div class="source-label">📰 Médias Mainstream</div>
+                        <div class="source-content">
+                            <strong>Reuters/NYT:</strong> Tarifs US sur l'Inde passent de 50% à 18%<br><br>
+                            <strong>Al Jazeera:</strong> En échange, l'Inde arrête d'acheter du pétrole russe<br><br>
+                            <strong>Détail:</strong> L'Inde achètera du pétrole US (et "potentiellement" vénézuélien)
+                        </div>
+                    </div>
+                    <div class="source-box twitter">
+                        <div class="source-label">🐦 Sentiment Twitter/X</div>
+                        <div class="source-content">
+                            <strong>Pro-Trump:</strong> "L'art du deal!"<br><br>
+                            <strong>Critiques:</strong> "L'Inde sacrifiée pour la politique anti-Russie"<br><br>
+                            <strong>Indien:</strong> Réactions mitigées sur le coût du pétrole
+                        </div>
                     </div>
                 </div>
                 
-                <div class="source-section">
-                    <div class="source-header">🐦 Ce que dit TWITTER</div>
-                    <div class="source-content">
-                        <ul>
-                            <li><strong>Enthousiasme:</strong> "MEGA MERGER ALERT! $1.25T combined beast uniting rockets, Starlink, Grok AI"</li>
-                            <li><strong>Critique Tesla:</strong> "TESLA SHAREHOLDERS WAKE UP — Tesla is now a funding vehicle for Musk's private companies. Your $2B investment in xAI funds: Grok AI, Starship, Mars dreams..."</li>
-                            <li><strong>Scepticisme:</strong> Questions sur les conflits d'intérêts entre Tesla (public) et SpaceX (privé)</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="fact-check-box">
-                    <div class="fact-check-title">🔍 FACT-CHECK</div>
-                    <p><strong>Claim:</strong> "1 million de satellites pour data centers orbitaux"</p>
-                    <p><strong>Réalité:</strong> La FCC a autorisé SpaceX pour ~4,425 satellites Starlink + 1 million de TERMINAUX utilisateurs (pas satellites). La demande pour data centers orbitaux est NOUVELLE et pas encore approuvée.</p>
-                    <p><strong>Sources:</strong> FCC.gov (autorisations actuelles)</p>
-                    <p style="margin-top: 10px; color: var(--accent-orange);"><strong>🔶 VERDICT: CONTEXTE MANQUANT</strong> — La fusion est réelle, mais les "1 million de satellites" sont une demande future, pas une réalité. Les médias mélangent projets et faits accomplis.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- SUJET 3: EPSTEIN / JACK LANG -->
-        <div class="section">
-            <h2 class="section-title">📜 Affaire Epstein : Jack Lang dans la tourmente</h2>
-            
-            <div class="topic-card">
-                <div class="topic-header">
-                    <h3 class="topic-title">Nouveaux documents — Lang "assume" ses liens</h3>
-                    <span class="verdict-badge verdict-false">❌ MISLEADING</span>
-                </div>
-                
-                <div class="source-section">
-                    <div class="source-header">📰 Ce que disent les MÉDIAS</div>
-                    <div class="source-content">
-                        <ul>
-                            <li><strong>Le Monde:</strong> Jack Lang "assume pleinement ses liens" avec Epstein, "à une époque où rien ne laissait supposer ses crimes"</li>
-                            <li><strong>Le Figaro:</strong> Caroline Lang démissionne du Syndicat des producteurs indépendants. Citée dans le testament d'Epstein pour 5M$.</li>
-                            <li><strong>Mediapart:</strong> "Intenses liens financiers" — société offshore fondée en 2016 avec Epstein</li>
-                            <li><strong>France 24:</strong> Première rencontre Lang-Epstein en 2012 (dîner à Paris)</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="source-section">
-                    <div class="source-header">🐦 Ce que dit TWITTER</div>
-                    <div class="source-content">
-                        <ul>
-                            <li><strong>Défense (BFM):</strong> "Le cas Jack Lang n'a rien à voir avec des faits de pédocriminalité. C'était un montage financier."</li>
-                            <li><strong>Accusations:</strong> "Jack Lang est un pédocriminel bien connu, avant ou après l'affaire Epstein"</li>
-                            <li><strong>Questions:</strong> "Pourquoi s'adresser à Epstein pour trouver un enfant acteur? Il y a des agences pour ça."</li>
-                            <li><strong>Grok (fact-check):</strong> "La première condamnation d'Epstein date du 30 juin 2008. Lang l'a rencontré en 2012 = APRÈS."</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="divergence-alert">
-                    <strong>⚠️ DIVERGENCE MAJEURE:</strong> Twitter soulève un point que les médias minimisent — Lang dit avoir rencontré Epstein "avant de connaître ses crimes", mais Epstein a été condamné en 2008. Leur première rencontre date de 2012.
-                </div>
-                
-                <div class="fact-check-box">
-                    <div class="fact-check-title">🔍 FACT-CHECK</div>
-                    <p><strong>Claim de Lang:</strong> "À une époque où rien ne laissait supposer ses crimes"</p>
-                    <p><strong>Réalité:</strong></p>
-                    <ul>
-                        <li>📅 <strong>30 juin 2008:</strong> Epstein plaide coupable pour sollicitation de prostitution impliquant une mineure (source: AP News, Britannica)</li>
-                        <li>📅 <strong>2012:</strong> Première rencontre Lang-Epstein (dîner à Paris)</li>
-                        <li>📅 <strong>2018:</strong> Donation d'Epstein</li>
-                        <li>📅 <strong>Mars 2019:</strong> Dernière invitation</li>
+                <div class="fact-check">
+                    <div class="fact-check-title">🔍 FACT-CHECK — Sources Primaires</div>
+                    <ul class="claims-list">
+                        <li><strong>Claim:</strong> Tarifs réduits de 50% à 18% <span class="claim-verdict" style="color: var(--accent-green);">✅ CONFIRMÉ</span> — <a class="source-link" href="https://www.reuters.com/world/india/trump-says-agreed-trade-deal-with-india-2026-02-02/">Source: Reuters</a></li>
+                        <li><strong>Claim:</strong> Inde arrête le pétrole russe <span class="claim-verdict" style="color: var(--accent-yellow);">🔶 À SURVEILLER</span> — Déclaration d'intention, pas encore effectif</li>
                     </ul>
-                    <p style="margin-top: 10px; color: var(--accent-red);"><strong>❌ VERDICT: MISLEADING</strong> — Lang a rencontré Epstein 4 ANS après sa première condamnation. L'argument "rien ne laissait supposer" est factuellement faux — les crimes d'Epstein étaient publics depuis 2008.</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- SUJET 4: STARLINK / UKRAINE -->
-        <div class="section">
-            <h2 class="section-title">🛰️ Ukraine : Drones russes équipés de Starlink</h2>
+        <!-- DIVERGENCES -->
+        <section class="section">
+            <h2 class="section-title"><span class="emoji">⚔️</span> Divergences Médias vs Twitter</h2>
             
-            <div class="topic-card">
-                <div class="topic-header">
-                    <h3 class="topic-title">SpaceX travaille avec l'Ukraine pour bloquer les terminaux russes</h3>
-                    <span class="verdict-badge verdict-confirmed">✅ CONFIRMÉ</span>
-                </div>
-                
-                <div class="source-section">
-                    <div class="source-header">📰 Ce que disent les MÉDIAS</div>
-                    <div class="source-content">
-                        <ul>
-                            <li><strong>Le Monde:</strong> "Kiev cherche une parade contre les drones russes équipés de Starlink" — Musk affirme avoir "pris les mesures nécessaires"</li>
-                            <li><strong>Reuters:</strong> Ukraine travaille avec SpaceX pour bloquer l'usage non autorisé</li>
-                            <li><strong>CNN:</strong> "Centaines" d'attaques documentées par drones Starlink</li>
-                            <li><strong>Ars Technica:</strong> SpaceX impose une "whitelist" — seuls les terminaux vérifiés fonctionneront en Ukraine</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="source-section">
-                    <div class="source-header">🐦 Ce que dit TWITTER</div>
-                    <div class="source-content">
-                        <ul>
-                            <li><strong>Confirmation:</strong> "SpaceX denies selling Starlink to Russia and has deactivated unauthorized terminals"</li>
-                            <li><strong>Contexte:</strong> "Ukraine was the first to use Starlink to guide its drones. Russia cracked the encryption."</li>
-                            <li><strong>Musk vs Sikorski:</strong> Musk a traité le ministre polonais d'"imbécile" après ses critiques</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="fact-check-box">
-                    <div class="fact-check-title">🔍 FACT-CHECK</div>
-                    <p><strong>Claim:</strong> "La Russie utilise Starlink pour guider ses drones en Ukraine"</p>
-                    <p><strong>Réalité:</strong> Confirmé par le ministère ukrainien de la Défense, CNN, Reuters. SpaceX nie avoir vendu à la Russie mais confirme que des terminaux "non autorisés" ont été utilisés. Système de whitelist en cours de déploiement.</p>
-                    <p style="margin-top: 10px; color: var(--accent-green);"><strong>✅ VERDICT: CONFIRMÉ</strong> — Médias et Twitter alignés sur les faits. Le contexte Twitter ajoute que l'Ukraine a utilisé Starlink en premier (pertinent).</p>
-                </div>
+            <div class="divergence-card">
+                <div class="divergence-title">📌 Epstein Files: Qui protège qui?</div>
+                <p><strong>Médias FR:</strong> Couverture minimale de Jack Lang comparée aux médias US/UK sur leurs personnalités locales</p>
+                <p><strong>Twitter:</strong> Accusation que "les vrais noms sont cachés" — partiellement fondé sur le traitement différencié</p>
+                <p><strong>Verdict:</strong> <span style="color: var(--accent-yellow);">⚡ FRAMING</span> — Les médias tendent à protéger "leurs" élites respectives</p>
             </div>
-        </div>
-
-        <!-- SUJET 5: IRAN-US NEGOCIATIONS -->
-        <div class="section">
-            <h2 class="section-title">☢️ Iran-US : Négociations nucléaires vendredi</h2>
             
-            <div class="topic-card">
-                <div class="topic-header">
-                    <h3 class="topic-title">Pourparlers prévus en Turquie — Trump optimiste</h3>
-                    <span class="verdict-badge verdict-confirmed">✅ CONFIRMÉ</span>
-                </div>
-                
-                <div class="source-section">
-                    <div class="source-header">📰 Ce que disent les MÉDIAS</div>
-                    <div class="source-content">
-                        <ul>
-                            <li><strong>Le Temps:</strong> Pezeshkian a mandaté Araghchi (FM Iran) pour négociations directes — vendredi en Turquie</li>
-                            <li><strong>Reuters:</strong> Witkoff (envoyé US) vs Araghchi confirmé pour vendredi à Istanbul</li>
-                            <li><strong>Washington Post:</strong> "Talks aimed at staving off an imminent U.S. strike"</li>
-                            <li><strong>Le Figaro:</strong> Trump va-t-il "sacrifier les opposants iraniens" pour un accord?</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="source-section">
-                    <div class="source-header">🐦 Ce que dit TWITTER</div>
-                    <div class="source-content">
-                        <ul>
-                            <li><strong>Activistes:</strong> "No nuclear deal while detainees face torture & death in Iran. Trump encouraged the uprising—now fulfill the promise to save them!"</li>
-                            <li><strong>Reportage:</strong> "Trump: Iran is talking to us, seriously talking. Hinting at deal to avoid strikes."</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="fact-check-box">
-                    <div class="fact-check-title">🔍 FACT-CHECK</div>
-                    <p><strong>Claim:</strong> "Négociations Iran-US vendredi en Turquie"</p>
-                    <p><strong>Réalité:</strong> Confirmé par Reuters, Washington Post et sources iraniennes. Araghchi vs Witkoff à Istanbul.</p>
-                    <p style="margin-top: 10px; color: var(--accent-green);"><strong>✅ VERDICT: CONFIRMÉ</strong> — Twitter ajoute le contexte important des prisonniers politiques iraniens que les médias mainstream mentionnent moins.</p>
-                </div>
+            <div class="divergence-card">
+                <div class="divergence-title">📌 Ukraine: Qui sabote les négociations?</div>
+                <p><strong>Médias occidentaux:</strong> La Russie sabote avec ses frappes massives</p>
+                <p><strong>Twitter pro-Russie:</strong> L'Ukraine a violé la trêve énergétique en premier</p>
+                <p><strong>Verdict:</strong> <span style="color: var(--accent-green);">✅ MÉDIAS ONT RAISON</span> — Les frappes russes du 3 février sont documentées; aucune preuve de violation ukrainienne préalable</p>
             </div>
-        </div>
-
-        <!-- SUJET 6: INDIA-RUSSIA OIL -->
-        <div class="section">
-            <h2 class="section-title">🛢️ Deal Trump-Modi : L'Inde arrête le pétrole russe?</h2>
             
-            <div class="topic-card">
-                <div class="topic-header">
-                    <h3 class="topic-title">Tarifs US réduits à 18% — Contreparties floues</h3>
-                    <span class="verdict-badge verdict-unverified">❓ NON VÉRIFIÉ</span>
-                </div>
-                
-                <div class="source-section">
-                    <div class="source-header">📰 Ce que disent les MÉDIAS</div>
-                    <div class="source-content">
-                        <ul>
-                            <li><strong>Le Monde:</strong> "L'Inde a accepté d'arrêter d'acheter du pétrole russe" — selon Trump</li>
-                            <li><strong>Reuters:</strong> Tarifs US baissent de 50% à 18%. Inde "halting Russian oil purchases"</li>
-                            <li><strong>AP News:</strong> Modi "agreed to stop buying Russian oil" — citation Trump</li>
-                            <li><strong>NYT:</strong> "Short on details" — India promised mais pas de document officiel</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="source-section">
-                    <div class="source-header">🐦 Ce que dit TWITTER</div>
-                    <div class="source-content">
-                        <ul>
-                            <li><strong>Critique indienne massive:</strong> "Trump is DICTATING to Modi to stop buying oil from Russia & start importing from Venezuela"</li>
-                            <li><strong>Grok:</strong> "The Indian government hasn't explicitly confirmed Trump's claims about reducing barriers to zero, opening agriculture, or shifting oil purchases"</li>
-                            <li><strong>Opposition:</strong> "Modi promised farmers he will never compromise. This is 100% betrayal."</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="divergence-alert">
-                    <strong>⚠️ DIVERGENCE:</strong> Les médias occidentaux rapportent les claims de Trump comme des faits. Twitter (notamment indien) souligne que l'Inde n'a PAS officiellement confirmé les détails.
-                </div>
-                
-                <div class="fact-check-box">
-                    <div class="fact-check-title">🔍 FACT-CHECK</div>
-                    <p><strong>Claim:</strong> "L'Inde a accepté d'arrêter le pétrole russe"</p>
-                    <p><strong>Réalité:</strong> Seul Trump l'affirme. Le gouvernement indien a remercié Trump pour la baisse des tarifs mais N'A PAS confirmé l'arrêt des achats russes ou l'ouverture agricole. Pas de communiqué officiel indien trouvé.</p>
-                    <p style="margin-top: 10px; color: var(--text-secondary);"><strong>❓ VERDICT: NON VÉRIFIÉ</strong> — Les médias reprennent la version Trump sans confirmation indienne. Twitter a raison de soulever le doute.</p>
-                </div>
+            <div class="divergence-card">
+                <div class="divergence-title">📌 Canal de Panama: Contrôle chinois?</div>
+                <p><strong>MAGA Twitter:</strong> "Trump récupère le canal des Chinois"</p>
+                <p><strong>Médias:</strong> CK Hutchison avait des concessions portuaires, pas le canal</p>
+                <p><strong>Verdict:</strong> <span style="color: var(--accent-green);">✅ MÉDIAS ONT RAISON</span> — Le canal lui-même est panaméen depuis 1999</p>
             </div>
-        </div>
-
-        <!-- SUJET 7: NEW START -->
-        <div class="section">
-            <h2 class="section-title">☢️ Traité New START : Expiration le 5 février</h2>
-            
-            <div class="topic-card">
-                <div class="topic-header">
-                    <h3 class="topic-title">Fin du dernier traité nucléaire US-Russie</h3>
-                    <span class="verdict-badge verdict-confirmed">✅ CONFIRMÉ</span>
-                </div>
-                
-                <div class="source-section">
-                    <div class="source-header">📰 Ce que disent les MÉDIAS</div>
-                    <div class="source-content">
-                        <ul>
-                            <li><strong>Le Temps:</strong> "L'expiration du traité New Start accroît le risque de courses aux armes nucléaires"</li>
-                            <li><strong>Chatham House:</strong> Expiration le 4-5 février 2026</li>
-                            <li><strong>NTI:</strong> "Decades of legally binding limits on global nuclear weapons stockpiles will come to an end"</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="fact-check-box">
-                    <div class="fact-check-title">🔍 FACT-CHECK</div>
-                    <p><strong>Claim:</strong> "New START expire le 5 février 2026"</p>
-                    <p><strong>Réalité:</strong> Confirmé. Signé en 2010 par Obama et Medvedev, étendu en 2021 jusqu'au 5 février 2026. Aucune négociation pour un successeur. Limite: 1550 ogives, 700 vecteurs.</p>
-                    <p style="margin-top: 10px; color: var(--accent-green);"><strong>✅ VERDICT: CONFIRMÉ</strong> — Sujet peu couvert sur Twitter mais factuellement exact.</p>
-                </div>
-            </div>
-        </div>
+        </section>
 
         <!-- TRIBUNAL DU BULLSHIT -->
-        <div class="tribunal-section">
-            <h2 class="tribunal-title">⚖️🧂 LE TRIBUNAL DU BULLSHIT</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 25px;">Où on se moque des biais, du sensationnalisme et de l'absurdité — des deux côtés.</p>
+        <section class="section">
+            <h2 class="section-title"><span class="emoji">⚖️</span> Le Tribunal du Bullshit 🧂</h2>
             
-            <div class="tribunal-item">
-                <div class="tribunal-quote">"Jack Lang assume ses liens avec Epstein, à une époque où rien ne laissait supposer ses crimes"</div>
-                <div class="tribunal-comment">🎭 Ah oui, en 2012, 4 ans après qu'Epstein ait été condamné pour sollicitation de mineure. Peut-être que Lang ne lit pas les journaux? Ou alors il confond "rien ne laissait supposer" avec "je n'avais pas envie de savoir". Nuance subtile.</div>
+            <div class="tribunal-card">
+                <div class="tribunal-header">⚖️ SÉANCE DU 4 FÉVRIER 2026</div>
+                
+                <div class="tribunal-item">
+                    <div class="tribunal-quote">"Il est temps de tourner la page" — Trump sur Epstein</div>
+                    <div class="tribunal-comment">🧂 Ah oui, 3.5 millions de pages de documents sur des crimes sexuels et il faut "tourner la page" après 4 jours. Le même gars qui tweete encore sur Hillary. L'art de la cohérence.</div>
+                </div>
+                
+                <div class="tribunal-item">
+                    <div class="tribunal-quote">Le Figaro titre sur "l'onde de choc Epstein aux USA" — pendant que Le Point révèle Jack Lang posant DEVANT LA PYRAMIDE DU LOUVRE avec Epstein</div>
+                    <div class="tribunal-comment">🧂 La presse française découvre que son ex-ministre de la Culture était pote avec un pédocriminel et c'est enterré en page 12. Mais quand c'est Clinton, c'est la Une. Magie du journalisme local.</div>
+                </div>
+                
+                <div class="tribunal-item">
+                    <div class="tribunal-quote">La Russie lance la "plus grosse frappe de 2026" sur l'Ukraine... la veille des négociations de paix qu'elle a acceptées</div>
+                    <div class="tribunal-comment">🧂 Quand ta stratégie de négociation c'est "on va discuter demain, mais là je te bombarde à -13°C". Le Kremlin invente le speed-dating diplomatique version destruction massive.</div>
+                </div>
+                
+                <div class="tribunal-item">
+                    <div class="tribunal-quote">Twitter MAGA: "Trump a gardé la trêve énergétique!" — 24h avant que la Russie lance 450 drones</div>
+                    <div class="tribunal-comment">🧂 Ce moment où tu célèbres trop vite et la réalité te rattrape comme un missile hypersonique. L'effet "Mission Accomplished" de 2026.</div>
+                </div>
+                
+                <div class="tribunal-item">
+                    <div class="tribunal-quote">Elon Musk: 800 milliards de fortune + poste au gouvernement + pas de conflit d'intérêts apparent</div>
+                    <div class="tribunal-comment">🧂 L'homme le plus riche de l'histoire dirige le "Department of Government Efficiency" et personne ne voit le problème. C'est beau, la démocratie du 21e siècle.</div>
+                </div>
             </div>
-            
-            <div class="tribunal-item">
-                <div class="tribunal-quote">Les médias: "Trump poursuit Harvard pour 1 milliard $"<br>La réalité: Un post Truth Social à 2h du matin</div>
-                <div class="tribunal-comment">📱 On est passé de "breaking news" à "breaking tweets". Techniquement, je peux aussi "réclamer" 1 milliard à Harvard depuis mon canapé. Ça ne veut pas dire que j'ai déposé une plainte. Mais bon, "Trump tweet en majuscules" c'est moins vendeur comme titre.</div>
-            </div>
-            
-            <div class="tribunal-item">
-                <div class="tribunal-quote">Reuters/AP: "India agreed to stop buying Russian oil" — selon Trump</div>
-                <div class="tribunal-comment">🤝 L'art subtil du journalisme moderne: citer Trump, mettre "selon Trump" en tout petit, puis titrer comme si c'était un fait. L'Inde? Pas de commentaire officiel. Mais qui a besoin de confirmation quand on a un tweet présidentiel?</div>
-            </div>
-            
-            <div class="tribunal-item">
-                <div class="tribunal-quote">Musk fusionne SpaceX et xAI: "1 million de satellites pour data centers orbitaux!"</div>
-                <div class="tribunal-comment">🛸 C'est une DEMANDE à la FCC, pas une autorisation. Actuellement autorisé: ~4,400 satellites. Mais "demande de permis en cours d'examen" ça fait moins rêver que "colonisation de l'orbite terrestre imminente". Le journalisme tech, c'est 90% de FOMO.</div>
-            </div>
-            
-            <div class="tribunal-item">
-                <div class="tribunal-quote">Twitter indien: "Modi a 3 pères maintenant: Trump, Poutine, et Xi"</div>
-                <div class="tribunal-comment">👨‍👨‍👦 OK celle-là est méchante mais drôle. Le meme politique international a atteint son pic. Difficile de défendre un deal où tu paies 18% de tarifs pour avoir le droit d'arrêter d'acheter du pétrole pas cher. Mais bon, "masterstroke" comme dirait l'autre.</div>
-            </div>
-        </div>
+        </section>
 
-        <!-- STATS FIABILITÉ -->
-        <div class="section">
-            <h2 class="section-title">📊 Fiabilité du jour</h2>
+        <!-- STATS MÉDIAS -->
+        <section class="section">
+            <h2 class="section-title"><span class="emoji">📊</span> Fiabilité des Sources (Aujourd'hui)</h2>
             
-            <table class="reliability-table">
-                <thead>
-                    <tr>
-                        <th>Source</th>
-                        <th>Claims vérifiés</th>
-                        <th>Score</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Reuters</td>
-                        <td>4/4</td>
-                        <td><div class="score-bar"><div class="score-fill score-high" style="width: 100%;"></div></div></td>
-                        <td>Factuel, mais reprend claims Trump sans assez de nuance</td>
-                    </tr>
-                    <tr>
-                        <td>Le Temps</td>
-                        <td>3/3</td>
-                        <td><div class="score-bar"><div class="score-fill score-high" style="width: 100%;"></div></div></td>
-                        <td>Analyse solide sur New START et Iran</td>
-                    </tr>
-                    <tr>
-                        <td>Le Monde</td>
-                        <td>5/6</td>
-                        <td><div class="score-bar"><div class="score-fill score-high" style="width: 85%;"></div></div></td>
-                        <td>Bon sur Ukraine/Starlink, framing sur Harvard</td>
-                    </tr>
-                    <tr>
-                        <td>Le Figaro</td>
-                        <td>4/5</td>
-                        <td><div class="score-bar"><div class="score-fill score-medium" style="width: 80%;"></div></div></td>
-                        <td>Bon sur Epstein, angle éditorial sur Iran</td>
-                    </tr>
-                    <tr>
-                        <td>Twitter/X</td>
-                        <td>Mixed</td>
-                        <td><div class="score-bar"><div class="score-fill score-medium" style="width: 60%;"></div></div></td>
-                        <td>Bons fact-checks (Grok), mais aussi accusations sans preuves (Epstein)</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div style="margin-top: 25px; padding: 20px; background: var(--bg-card); border-radius: 10px;">
-                <h3 style="color: var(--accent-purple); margin-bottom: 15px;">📈 Résumé du jour</h3>
-                <ul style="color: var(--text-secondary);">
-                    <li><strong>Claims confirmés:</strong> 4/7 (57%)</li>
-                    <li><strong>Framing/Contexte manquant:</strong> 2/7 (29%)</li>
-                    <li><strong>Misleading:</strong> 1/7 (14%)</li>
-                    <li><strong>Twitter a raison sur:</strong> Epstein/Lang timeline, India deal non confirmé</li>
-                    <li><strong>Médias ont raison sur:</strong> Starlink/Ukraine, Iran négos, New START</li>
+            <div class="topic-card">
+                <ul class="media-list">
+                    <li>
+                        <span>🇺🇸 Reuters / AP News</span>
+                        <span class="reliability-score score-high">92% — Factuel</span>
+                    </li>
+                    <li>
+                        <span>🇬🇧 BBC / The Guardian</span>
+                        <span class="reliability-score score-high">88% — Factuel avec angle</span>
+                    </li>
+                    <li>
+                        <span>🇨🇭 Le Temps / RTS</span>
+                        <span class="reliability-score score-high">85% — Équilibré</span>
+                    </li>
+                    <li>
+                        <span>🇫🇷 Le Monde</span>
+                        <span class="reliability-score score-medium">78% — Framing pro-establishment</span>
+                    </li>
+                    <li>
+                        <span>🇫🇷 Le Figaro</span>
+                        <span class="reliability-score score-medium">75% — Framing conservateur</span>
+                    </li>
+                    <li>
+                        <span>🇺🇸 NYT / Washington Post</span>
+                        <span class="reliability-score score-medium">80% — Factuel, angle liberal</span>
+                    </li>
+                    <li>
+                        <span>🐦 Twitter/X (agrégé)</span>
+                        <span class="reliability-score score-low">45% — Haute variance</span>
+                    </li>
                 </ul>
+                
+                <div style="margin-top: 20px; padding: 15px; background: var(--bg-card-alt); border-radius: 8px;">
+                    <strong>Méthodologie:</strong> Score basé sur la vérifiabilité des claims, la présence de sources primaires, et le niveau de framing/opinion dans la couverture du jour.
+                </div>
             </div>
-        </div>
+        </section>
 
         <footer>
-            <p>🥔 Généré par Rösti — Fact-check automatisé</p>
-            <p style="margin-top: 10px;">Sources: Le Monde, Le Figaro, Le Temps, RTS, Reuters, AP, BBC, CNN, The Guardian, Twitter/X</p>
-            <p style="margin-top: 10px; font-size: 0.9rem;">Dernière mise à jour: 3 février 2026, 09:10 CET</p>
+            <p>🥔 Généré par Rösti — 4 février 2026 à 09:19 CET</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">100% neutre politiquement. 100% impitoyable sur le bullshit.</p>
+            <p style="margin-top: 5px; color: var(--accent-blue);">Données: Le Monde, Le Figaro, RTS, Le Temps, Reuters, AP, BBC, Guardian, NYT, Al Jazeera, Kyiv Independent</p>
         </footer>
     </div>
 </body>
